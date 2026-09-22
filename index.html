@@ -323,6 +323,16 @@
     position:absolute;left:.9rem;bottom:.8rem;z-index:1;font-size:.85rem;color:var(--text);
     background:rgba(10,14,18,.55);padding:.3rem .7rem;border-radius:999px;
   }
+  .pano-slot{
+    position:relative;aspect-ratio:21/9;border-radius:var(--radius-l);overflow:hidden;margin-top:1.6rem;
+    background:linear-gradient(120deg,var(--surface-2),var(--bg-alt));border:1px solid var(--border-soft);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .pano-badge{
+    position:absolute;top:.8rem;right:.8rem;font-family:"IBM Plex Mono",monospace;font-size:.78rem;
+    color:var(--accent-strong);background:rgba(10,14,18,.6);border:1px solid var(--border-soft);
+    padding:.3rem .65rem;border-radius:999px;
+  }
   .strip[data-season-strip]{display:none;}
   :root[data-season="winter"] .strip[data-season-strip="winter"]{display:flex;}
   :root[data-season="summer"] .strip[data-season-strip="summer"]{display:flex;}
@@ -462,6 +472,7 @@
   }
   .checkbox-field input{width:17px;height:17px;flex:none;accent-color:var(--accent);}
   .field-hint{font-size:.8rem;color:var(--accent-2-strong);margin-top:.2rem;}
+  .gear-check-list{display:flex;flex-direction:column;gap:.65rem;margin-top:.3rem;}
   .confirm{
     text-align:center;padding-block:1.4rem;display:flex;flex-direction:column;align-items:center;gap:.7rem;
   }
@@ -511,6 +522,11 @@
   .badge-diff.medium{background:var(--diff-medium-tint);border:1px solid var(--diff-medium-border);color:var(--diff-medium);}
   .badge-diff.hard{background:var(--diff-hard-tint);border:1px solid var(--diff-hard-border);color:var(--diff-hard);}
   .badge-diff.expert{background:var(--diff-expert-tint);border:1px solid var(--diff-expert-border);color:var(--diff-expert);}
+  .badge-eco{
+    display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:600;padding:.28rem .6rem .28rem .5rem;
+    border-radius:999px;white-space:nowrap;background:var(--success-tint);border:1px solid var(--success-border);color:var(--success-strong);
+  }
+  .badge-eco svg{width:12px;height:12px;flex:none;}
 
   /* ---------- quiz ---------- */
   .quiz{max-width:640px;margin-top:1.8rem;background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius-l);padding:1.8rem clamp(1.2rem,4vw,2.4rem);}
@@ -538,6 +554,24 @@
   .checklist-card li{display:flex;align-items:flex-start;gap:.6rem;font-size:.9rem;color:var(--text);}
   .checklist-card li::before{content:"";flex:none;width:7px;height:7px;border-radius:2px;margin-top:.5rem;background:var(--accent);}
   .checklist-actions{margin-top:1.6rem;display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;}
+  .ugc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:1.8rem;align-items:start;}
+  @media (max-width:700px){.ugc-wrap{grid-template-columns:1fr;}}
+
+  /* ---------- weather widget ---------- */
+  .weather-card{
+    display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;
+    background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius-l);
+    padding:1.1rem 1.4rem;margin-top:1.2rem;min-height:32px;
+  }
+  .weather-now{display:flex;align-items:center;gap:.8rem;}
+  .weather-now svg{color:var(--accent-strong);flex:none;}
+  .weather-now b{font-size:1.7rem;font-family:"Big Shoulders Display",sans-serif;font-weight:700;}
+  .weather-now .weather-label{display:block;font-size:.78rem;color:var(--text-muted);}
+  .weather-days{display:flex;gap:1.3rem;}
+  .weather-day{text-align:center;font-size:.78rem;color:var(--text-muted);}
+  .weather-day b{display:block;color:var(--text);font-size:.88rem;margin-top:.2rem;}
+  .weather-fallback{font-size:.85rem;color:var(--text-muted);margin:0;}
+  .weather-fallback a{color:var(--accent-strong);}
   @media print{
     .no-print,header.site,footer.site,.sticky-cta,.draft-banner,nav.primary{display:none!important;}
     html.print-checklist body>main>.page>section.block:not(#gearChecklist){display:none!important;}
@@ -671,6 +705,7 @@
     <nav class="primary" id="primaryNav">
       <button data-nav="home">Главная</button>
       <button data-nav="booking">Забронировать инструктора</button>
+      <button data-nav="routes">Летние маршруты</button>
       <button data-nav="about">О компании</button>
       <button data-nav="blog">Журнал</button>
       <button data-nav="faq">Популярные вопросы</button>
@@ -871,6 +906,36 @@
     </section>
 
     <section class="block wrap reveal">
+      <p class="kicker">Фото от клиентов</p>
+      <h2 style="font-size:1.5rem;margin-top:.3rem;">Поделитесь своими кадрами с маршрута</h2>
+      <p class="intro">Лучшие фото и видео от клиентов попадают в галерею сайта — с вашего согласия. Загрузки на сайте нет: просто пришлите материалы инструктору или в MAX компании.</p>
+      <div class="ugc-wrap">
+        <div class="checklist-card">
+          <h3>Как прислать</h3>
+          <ul>
+            <li>Фото или видео — в MAX компании или инструктору лично</li>
+            <li>Короткая подпись: маршрут, сезон, инструктор (если помните)</li>
+            <li>Согласие на публикацию — достаточно одной фразы в сообщении</li>
+          </ul>
+        </div>
+        <div class="grid" style="margin-top:0;">
+          <div class="card" style="cursor:default;">
+            <div class="card-photo">
+              <span class="example-tag">Пример</span>
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--text-faint);"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7l1.5-3h5L16 7"/><circle cx="12" cy="13.5" r="3.5"/></svg>
+            </div>
+          </div>
+          <div class="card" style="cursor:default;">
+            <div class="card-photo">
+              <span class="example-tag">Пример</span>
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--text-faint);"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7l1.5-3h5L16 7"/><circle cx="12" cy="13.5" r="3.5"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block wrap reveal">
       <p class="kicker">Видео</p>
       <h2 style="font-size:1.5rem;margin-top:.3rem;">Инструктора и маршруты в движении</h2>
       <div class="video-grid">
@@ -889,6 +954,17 @@
     </section>
 
     <section class="block wrap reveal">
+      <p class="kicker">360°</p>
+      <h2 style="font-size:1.5rem;margin-top:.3rem;">Круговая панорама с вершины</h2>
+      <div class="pano-slot">
+        <span class="example-tag" style="top:.8rem;left:.8rem;">Пример</span>
+        <span class="pano-badge">360°</span>
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--text-faint);"><ellipse cx="12" cy="12" rx="10" ry="5"/><ellipse cx="12" cy="12" rx="4" ry="10"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>
+      </div>
+      <p class="note"><b>Заглушка.</b> Пришлите круговое фото с вершины или смотровой точки — встроим интерактивный просмотр с прокруткой прямо на сайте.</p>
+    </section>
+
+    <section class="block wrap reveal">
       <p class="kicker">Команда и направления</p>
       <h2 style="font-size:1.6rem;margin-top:.4rem;">Два направления — одна команда</h2>
       <p class="intro">«Архызпарк» — 9 лет на рынке, компанию создал Вячеслав Греков. Сегодня это команда сертифицированных инструкторов категорий A, B, C и международного уровня, которые круглый год сопровождают группы в горах Архыза.</p>
@@ -901,6 +977,14 @@
 
   <!-- ================= BOOKING ================= -->
   <section class="page" data-page="booking" hidden>
+    <section class="block wrap reveal" style="padding-bottom:0;">
+      <p class="kicker">Погода</p>
+      <h2 style="font-size:1.3rem;">Сейчас в Архызе</h2>
+      <div class="weather-card" id="weatherCard">
+        <p class="weather-fallback">Загружаем прогноз…</p>
+      </div>
+    </section>
+
     <section class="block wrap reveal" style="padding-bottom:0;">
       <p class="kicker">Ориентир</p>
       <h2 style="font-size:1.5rem;">Обычная загруженность по дням недели</h2>
@@ -963,6 +1047,80 @@
           <h3>Маршрут</h3>
           <p>Встречаетесь в оговоренном месте — дальше инструктор ведёт группу от старта до финиша.</p>
         </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= ROUTES (SUMMER) ================= -->
+  <section class="page" data-page="routes" hidden>
+    <section class="block wrap reveal">
+      <p class="kicker">Лето</p>
+      <h2>Летние маршруты</h2>
+      <p class="intro">Походы, восхождения, экскурсии и заброски по маршруту — карточки ниже показывают структуру раздела. Реальные маршруты, расстояния и точки старта добавит заказчик.</p>
+      <p class="note"><b>Пример данных.</b> Названия и описания условные — под настоящие маршруты подставим точные факты.</p>
+      <div class="grid">
+        <div class="card" style="cursor:default;">
+          <div class="card-photo">
+            <span class="example-tag">Пример</span>
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent-strong);"><path d="M3 20l6-8 4 5 3-4 5 7"/><circle cx="17" cy="6" r="2.5"/></svg>
+          </div>
+          <div class="card-body">
+            <h3>Поход выходного дня</h3>
+            <div class="tag-row">
+              <span class="tag">Однодневный</span>
+              <span class="badge-diff easy">Лёгкий</span>
+            </div>
+            <p style="font-size:.88rem;color:var(--text-muted);">Прогулочный маршрут для тех, кто впервые в горах — без специальной подготовки, с полным сопровождением инструктора.</p>
+          </div>
+        </div>
+        <div class="card" style="cursor:default;">
+          <div class="card-photo">
+            <span class="example-tag">Пример</span>
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent-strong);"><path d="M2 20l7-14 4 7 3-5 6 12"/></svg>
+          </div>
+          <div class="card-body">
+            <h3>Восхождение</h3>
+            <div class="tag-row">
+              <span class="tag">Многодневный</span>
+              <span class="badge-diff hard">Сложный</span>
+            </div>
+            <p style="font-size:.88rem;color:var(--text-muted);">Для подготовленных участников — регистрируется в МЧС, сопровождают инструктора категории B/C или международного уровня.</p>
+          </div>
+        </div>
+        <div class="card" style="cursor:default;">
+          <div class="card-photo">
+            <span class="example-tag">Пример</span>
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent-strong);"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+          </div>
+          <div class="card-body">
+            <h3>Экскурсия по окрестностям</h3>
+            <div class="tag-row">
+              <span class="tag">Однодневный</span>
+              <span class="badge-diff easy">Лёгкий</span>
+            </div>
+            <p style="font-size:.88rem;color:var(--text-muted);">Смотровые точки и знаковые места Архыза — подходит семьям с детьми и тем, кто хочет посмотреть, а не идти далеко.</p>
+          </div>
+        </div>
+        <div class="card" style="cursor:default;">
+          <div class="card-photo">
+            <span class="example-tag">Пример</span>
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent-strong);"><path d="M4 20c8 0 14-6 14-14 0-1 0-2-.5-3-6 0-11 4-13 9-1 2-1 5-.5 8z"/><path d="M6 18c3-3 6-6 11-11"/></svg>
+          </div>
+          <div class="card-body">
+            <h3>Эко-поход с уборкой троп</h3>
+            <div class="tag-row">
+              <span class="tag">Однодневный</span>
+              <span class="badge-diff medium">Средний</span>
+            </div>
+            <div class="tag-row">
+              <span class="badge-eco"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c8 0 14-6 14-14 0-1 0-2-.5-3-6 0-11 4-13 9-1 2-1 5-.5 8z"/></svg>Эко-маршрут</span>
+            </div>
+            <p style="font-size:.88rem;color:var(--text-muted);">Поход совмещён с заботой о природе — участники помогают убирать тропу по пути. Формат на согласовании с заказчиком.</p>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:1.8rem;">
+        <button class="btn btn-primary" id="routesToBooking">Забронировать инструктора</button>
       </div>
     </section>
   </section>
@@ -1144,11 +1302,18 @@
       </form>
     </div>
 
+    <div class="step" id="stepGear">
+      <p style="color:var(--text-muted);margin-bottom:1.1rem;">Отметьте, что из снаряжения у вас уже есть — остальное «Архызпарк» подготовит к вашему приезду.</p>
+      <div class="gear-check-list" id="gearCheckList"></div>
+      <button class="btn btn-primary btn-block" id="toConfirmStep" style="margin-top:1.4rem;">Продолжить</button>
+    </div>
+
     <div class="step" id="stepConfirm">
       <div class="confirm">
         <div class="confirm-icon">&#10003;</div>
         <h3 style="font-size:1.15rem;">Заявка отправлена</h3>
-        <p style="max-width:38ch;">Демо-режим: здесь заявка уйдёт инструктору в MAX или CRM после подключения реальной отправки.</p>
+        <p style="max-width:40ch;">Демо-режим: здесь заявка уйдёт инструктору в MAX или CRM после подключения реальной отправки.</p>
+        <p id="gearSummary" style="max-width:40ch;color:var(--text-muted);"></p>
         <button class="btn btn-ghost" id="closeConfirm">Закрыть</button>
       </div>
     </div>
@@ -1170,6 +1335,7 @@
       <div>
         <h4>Разделы</h4>
         <a data-nav="booking" href="#" role="button">Забронировать инструктора</a>
+        <a data-nav="routes" href="#" role="button">Летние маршруты</a>
         <a data-nav="about" href="#" role="button">О компании</a>
         <a data-nav="blog" href="#" role="button">Журнал</a>
         <a data-nav="faq" href="#" role="button">Популярные вопросы</a>
@@ -1328,6 +1494,9 @@
   var kidsCta=document.getElementById("kidsCta");
   if(kidsCta){ kidsCta.addEventListener("click",function(){ goToFilteredBooking("kids"); }); }
 
+  var routesToBooking=document.getElementById("routesToBooking");
+  if(routesToBooking){ routesToBooking.addEventListener("click",function(){ goToFilteredBooking("hiking"); }); }
+
   /* ---------- quiz ---------- */
   var quiz=document.getElementById("quiz");
   if(quiz){
@@ -1420,17 +1589,55 @@
       '<iframe class="reviews-widget-frame" src="https://yandex.ru/maps-reviews-widget/'+YANDEX_REVIEWS_ORG_ID+'?comments" title="Отзывы Архызпарк на Яндекс.Картах"></iframe>';
   }
 
+  /* ---------- live weather (Архыз, ~43.68N 41.32E) — real data via free Open-Meteo API, no key needed ---------- */
+  var weatherCard=document.getElementById("weatherCard");
+  if(weatherCard){
+    var WMO_LABELS={
+      0:"Ясно",1:"Малооблачно",2:"Облачно",3:"Пасмурно",45:"Туман",48:"Изморозь",
+      51:"Морось",53:"Морось",55:"Морось",61:"Дождь",63:"Дождь",65:"Сильный дождь",
+      71:"Снег",73:"Снег",75:"Сильный снег",77:"Снежная крупа",80:"Ливень",81:"Ливень",82:"Сильный ливень",
+      85:"Снегопад",86:"Снегопад",95:"Гроза",96:"Гроза с градом",99:"Гроза с градом"
+    };
+    function weatherLabel(code){ return WMO_LABELS[code] || "—"; }
+    function weatherIconSvg(){
+      return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>';
+    }
+    var weekdayShort=["Вс","Пн","Вт","Ср","Чт","Пт","Сб"];
+
+    fetch("https://api.open-meteo.com/v1/forecast?latitude=43.68&longitude=41.32&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=Europe%2FMoscow&forecast_days=3")
+      .then(function(r){ if(!r.ok) throw new Error("bad response"); return r.json(); })
+      .then(function(data){
+        var cur=data.current, daily=data.daily;
+        var daysHtml="";
+        for(var i=1;i<daily.time.length && i<=2;i++){
+          var d=new Date(daily.time[i]);
+          daysHtml += '<div class="weather-day">'+weekdayShort[d.getDay()]+
+            '<b>'+Math.round(daily.temperature_2m_max[i])+'° / '+Math.round(daily.temperature_2m_min[i])+'°</b></div>';
+        }
+        weatherCard.innerHTML =
+          '<div class="weather-now">'+weatherIconSvg()+
+            '<div><b>'+Math.round(cur.temperature_2m)+'°C</b><span class="weather-label">'+weatherLabel(cur.weather_code)+' · Архыз сейчас</span></div>'+
+          '</div>'+
+          '<div class="weather-days">'+daysHtml+'</div>';
+      })
+      .catch(function(){
+        weatherCard.innerHTML =
+          '<p class="weather-fallback">Не удалось загрузить прогноз. Смотрите актуальную погоду на <a href="https://yandex.ru/pogoda/" target="_blank" rel="noopener">Яндекс.Погоде</a>.</p>';
+      });
+  }
+
   /* ---------- modal / booking sheet ---------- */
   var overlay=document.getElementById("overlay");
   var sheetTitle=document.getElementById("sheetTitle");
   var sheetTags=document.getElementById("sheetTags");
   var stepDetail=document.getElementById("stepDetail");
   var stepForm=document.getElementById("stepForm");
+  var stepGear=document.getElementById("stepGear");
   var stepConfirm=document.getElementById("stepConfirm");
   var lastFocused=null;
 
   function showStep(step){
-    [stepDetail,stepForm,stepConfirm].forEach(function(s){ s.classList.remove("active"); });
+    [stepDetail,stepForm,stepGear,stepConfirm].forEach(function(s){ s.classList.remove("active"); });
     step.classList.add("active");
   }
 
@@ -1458,8 +1665,38 @@
 
   document.getElementById("toBookingStep").addEventListener("click",function(){ showStep(stepForm); });
 
+  /* ---------- gear readiness step (what client already has vs needs provided) ---------- */
+  var gearItemsBySeason={
+    winter:["Термобельё и флисовый слой","Непромокаемая куртка и штаны","Перчатки и запасные варежки","Шлем и горнолыжная маска или очки","Лыжи или сноуборд с креплениями","Горнолыжные ботинки"],
+    summer:["Треккинговые ботинки","Рюкзак и дождевик","Головной убор от солнца","Аптечка первой помощи","Треккинговые палки"]
+  };
+  var gearCheckList=document.getElementById("gearCheckList");
+  var gearSummary=document.getElementById("gearSummary");
+
+  function renderGearList(){
+    var season=document.documentElement.getAttribute("data-season")==="summer" ? "summer" : "winter";
+    var items=gearItemsBySeason[season];
+    gearCheckList.innerHTML = items.map(function(item,idx){
+      return '<label class="checkbox-field" style="margin-top:0;">'+
+        '<input type="checkbox" data-gear-item="'+idx+'" value="'+item+'">'+
+        '<span>'+item+'</span></label>';
+    }).join("");
+  }
+
   document.getElementById("bookingForm").addEventListener("submit",function(e){
     e.preventDefault();
+    renderGearList();
+    showStep(stepGear);
+  });
+
+  document.getElementById("toConfirmStep").addEventListener("click",function(){
+    var needed=[];
+    gearCheckList.querySelectorAll("input[data-gear-item]").forEach(function(cb){
+      if(!cb.checked){ needed.push(cb.value); }
+    });
+    gearSummary.textContent = needed.length
+      ? "«Архызпарк» подготовит к вашему приезду: "+needed.join(", ")+"."
+      : "У вас уже есть всё необходимое снаряжение — ничего готовить не нужно.";
     showStep(stepConfirm);
   });
 
