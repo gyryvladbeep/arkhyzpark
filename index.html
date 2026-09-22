@@ -282,6 +282,12 @@
     font-size:.82rem;color:var(--text-muted);text-align:center;line-height:1.4;
     position:relative;z-index:1;max-width:14ch;
   }
+  .strip[data-season-strip]{display:none;}
+  :root[data-season="winter"] .strip[data-season-strip="winter"]{display:flex;}
+  :root[data-season="summer"] .strip[data-season-strip="summer"]{display:flex;}
+  .checklist-card[data-season-strip]{display:none;}
+  :root[data-season="winter"] .checklist-card[data-season-strip="winter"]{display:block;}
+  :root[data-season="summer"] .checklist-card[data-season-strip="summer"]{display:block;}
 
   /* ---------- process steps ---------- */
   .process-grid{
@@ -460,6 +466,43 @@
   .badge-diff.hard{background:var(--diff-hard-tint);border:1px solid var(--diff-hard-border);color:var(--diff-hard);}
   .badge-diff.expert{background:var(--diff-expert-tint);border:1px solid var(--diff-expert-border);color:var(--diff-expert);}
 
+  /* ---------- quiz ---------- */
+  .quiz{max-width:640px;margin-top:1.8rem;background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius-l);padding:1.8rem clamp(1.2rem,4vw,2.4rem);}
+  .quiz-step{display:none;}
+  .quiz-step.active{display:block;}
+  .quiz-q{font-size:1.08rem;font-weight:700;margin-bottom:1.1rem;}
+  .quiz-options{display:flex;flex-wrap:wrap;gap:.7rem;}
+  .quiz-progress{display:flex;gap:.35rem;margin-bottom:1.3rem;}
+  .quiz-progress span{height:4px;flex:1;border-radius:2px;background:var(--border);}
+  .quiz-progress span.done{background:var(--accent);}
+  .quiz-result{display:none;text-align:center;padding-block:.6rem;}
+  .quiz-result.active{display:block;}
+  .quiz-result-icon{
+    width:52px;height:52px;border-radius:50%;background:var(--success-tint);border:1px solid var(--success-border);
+    display:flex;align-items:center;justify-content:center;color:var(--success-strong);font-size:1.4rem;margin:0 auto .9rem;
+  }
+  .quiz-result h3{font-size:1.15rem;margin-bottom:.4rem;}
+  .quiz-result p{color:var(--text-muted);max-width:44ch;margin:0 auto;}
+
+  /* ---------- gear checklist ---------- */
+  .checklist-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem;margin-top:1.8rem;}
+  .checklist-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius-l);padding:1.4rem 1.5rem;}
+  .checklist-card h3{font-size:1rem;margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem;}
+  .checklist-card ul{list-style:none;display:flex;flex-direction:column;gap:.55rem;}
+  .checklist-card li{display:flex;align-items:flex-start;gap:.6rem;font-size:.9rem;color:var(--text);}
+  .checklist-card li::before{content:"";flex:none;width:7px;height:7px;border-radius:2px;margin-top:.5rem;background:var(--accent);}
+  .checklist-actions{margin-top:1.6rem;display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;}
+  @media print{
+    .no-print,header.site,footer.site,.sticky-cta,.draft-banner,nav.primary{display:none!important;}
+    html.print-checklist body>main>.page>section.block:not(#gearChecklist){display:none!important;}
+    html.print-checklist #gearChecklist{padding:0;}
+    html.print-checklist .checklist-actions{display:none!important;}
+    html.print-checklist{background:#fff;}
+    html.print-checklist body{background:#fff;color:#111;}
+    html.print-checklist .checklist-card{border-color:#ccc;background:#fff;}
+    html.print-checklist .checklist-card li{color:#111;}
+  }
+
   /* ---------- footer ---------- */
   footer.site{border-top:1px solid var(--border-soft);background:var(--bg-alt);padding-block:2.4rem;}
   .foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.6rem;}
@@ -587,20 +630,58 @@
     </section>
 
     <section class="block wrap reveal">
+      <p class="kicker">Не знаете, с чего начать?</p>
+      <h2>Подберём направление за пару кликов</h2>
+      <div class="quiz" id="quiz">
+        <div class="quiz-progress" id="quizProgress"><span data-dot="1"></span><span data-dot="2"></span></div>
+        <div class="quiz-step active" data-step="1">
+          <p class="quiz-q">Планируете заниматься с ребёнком?</p>
+          <div class="quiz-options">
+            <button class="btn btn-ghost" data-quiz-answer="kids-yes">Да, с ребёнком</button>
+            <button class="btn btn-ghost" data-quiz-answer="kids-no">Нет, без детей</button>
+          </div>
+        </div>
+        <div class="quiz-step" data-step="2">
+          <p class="quiz-q">Что вам ближе?</p>
+          <div class="quiz-options">
+            <button class="btn btn-ghost" data-quiz-answer="ski">Лыжи</button>
+            <button class="btn btn-ghost" data-quiz-answer="snowboard">Сноуборд</button>
+            <button class="btn btn-ghost" data-quiz-answer="hiking">Поход, восхождение</button>
+          </div>
+        </div>
+        <div class="quiz-result" id="quizResult">
+          <div class="quiz-result-icon">&#10003;</div>
+          <h3 id="quizResultTitle"></h3>
+          <p id="quizResultText"></p>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.3rem;justify-content:center;">
+            <button class="btn btn-primary" id="quizGo">Смотреть инструкторов</button>
+            <button class="btn btn-ghost" id="quizRestart">Начать заново</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block wrap reveal">
       <div class="gallery-head">
         <div>
           <p class="kicker">Фото и видео с маршрутов</p>
           <h2 style="font-size:1.5rem;margin-top:.3rem;">Как проходят выезды</h2>
         </div>
       </div>
-      <div class="strip" role="list">
-        <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg><span>Фото с маршрутов</span></div>
-        <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="M16 9l5-3v12l-5-3"/></svg><span>Видео с выездов</span></div>
-        <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20l6-8 4 5 3-4 5 7"/><circle cx="17" cy="6" r="2.5"/></svg><span>Клиенты на склоне</span></div>
-        <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c0-3 2.5-5 6-5s6 2 6 5M13 20c.5-2.5 2.3-4 5-4s4.5 1.5 4 4"/></svg><span>Групповой поход</span></div>
+      <div class="strip" role="list" data-season-strip="winter">
+        <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg><span>Фото с трасс</span></div>
+        <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="M16 9l5-3v12l-5-3"/></svg><span>Видео катания</span></div>
         <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l2.5 5 5.5.8-4 4 1 5.5L12 15.5 6.9 18l1-5.5-4-4 5.5-.8z"/></svg><span>Детская школа</span></div>
+        <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c0-3 2.5-5 6-5s6 2 6 5M13 20c.5-2.5 2.3-4 5-4s4.5 1.5 4 4"/></svg><span>Групповые уроки</span></div>
+        <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20l6-8 4 5 3-4 5 7"/><circle cx="17" cy="6" r="2.5"/></svg><span>Горные пейзажи</span></div>
       </div>
-      <p class="note"><b>Заглушка.</b> Сюда встанет карусель реальных фото и видео с клиентами — пришлите материалы, и мы соберём галерею.</p>
+      <div class="strip" role="list" data-season-strip="summer">
+        <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20l6-8 4 5 3-4 5 7"/><circle cx="17" cy="6" r="2.5"/></svg><span>Фото с маршрутов</span></div>
+        <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="M16 9l5-3v12l-5-3"/></svg><span>Видео восхождений</span></div>
+        <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c0-3 2.5-5 6-5s6 2 6 5M13 20c.5-2.5 2.3-4 5-4s4.5 1.5 4 4"/></svg><span>Групповые походы</span></div>
+        <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg><span>Заброски и экскурсии</span></div>
+      </div>
+      <p class="note"><b>Заглушка.</b> Сюда встанет карусель реальных фото и видео с клиентами — пришлите материалы, и мы соберём галерею. Набор плиток меняется вместе с сезонной темой сайта.</p>
     </section>
 
     <section class="block wrap reveal">
@@ -674,12 +755,22 @@
         <div class="value"><b>Два сезона — два направления</b><p>Зимой — лыжи и сноуборд для взрослых и детей. Летом — походы, восхождения, экскурсии и заброски по маршруту.</p></div>
       </div>
 
-      <div class="highlight-box">
-        <p class="kicker">Детская горнолыжная школа</p>
-        <p>Отдельное направление службы — индивидуальный подход к каждому маленькому начинающему, а не только к юным спортсменам. Найти таких инструкторов можно фильтром «Детям» в разделе бронирования.</p>
-      </div>
-
       <p class="note"><b>Дополнить позже:</b> логотип уже используется в шапке и футере; фирменные фото, подробная история компании и точный список сертификатов инструкторов будут добавлены по мере поступления материалов от заказчика.</p>
+    </section>
+
+    <section class="block wrap reveal">
+      <div class="highlight-box" style="margin-top:0;">
+        <p class="kicker">Детская горнолыжная школа</p>
+        <h2 style="font-size:1.5rem;margin-top:.3rem;">Персональный подход к каждому юному спортсмену</h2>
+        <p style="max-width:70ch;">Отдельное направление службы — индивидуальный, а не групповой темп занятий для каждого маленького начинающего. Работают инструкторы, отдельно отмеченные как «работает с детьми» — их можно найти фильтром в разделе бронирования.</p>
+        <div class="value-grid" style="margin-top:1.4rem;">
+          <div class="value"><b>Индивидуальные занятия</b><p>Темп и программа подбираются под ребёнка, а не под усреднённый групповой стандарт.</p></div>
+          <div class="value"><b>Отмеченные инструкторы</b><p>В карточке инструктора всегда видно, работает ли он с детьми — сомнений при выборе не остаётся.</p></div>
+          <div class="value"><b>Консультация перед стартом</b><p>Инструктор подскажет родителям, какое снаряжение и одежда нужны ребёнку под конкретный уровень.</p></div>
+        </div>
+        <button class="btn btn-primary" id="kidsCta" style="margin-top:1.5rem;">Смотреть инструкторов для детей</button>
+      </div>
+      <p class="note"><b>Дополнить позже:</b> точные возрастные группы, длительность занятий и стоимость добавит заказчик.</p>
     </section>
 
     <section class="block wrap reveal">
@@ -705,6 +796,41 @@
         <div class="diff-item"><span class="diff-dot expert"></span><div><b>Экспертный</b><p>Многодневные и высокогорные маршруты, сопровождают инструктора международного уровня.</p></div></div>
       </div>
       <p class="note"><b>Пример шкалы.</b> Точное распределение конкретных маршрутов по уровням сложности добавит заказчик.</p>
+    </section>
+
+    <section class="block wrap reveal" id="gearChecklist">
+      <p class="kicker">Подготовка</p>
+      <h2>Чек-лист снаряжения</h2>
+      <p class="intro">Базовый список на выход — инструктор дополнит его под конкретный маршрут при подтверждении заявки. Показан чек-лист текущего сезона на сайте.</p>
+      <div class="checklist-wrap">
+        <div class="checklist-card" data-season-strip="winter">
+          <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="flex:none;"><path d="M12 2v20M4.2 6l15.6 12M19.8 6L4.2 18M8 3l4 3 4-3M8 21l4-3 4 3M2 9l4 3-4 3M22 9l-4 3 4 3"/></svg>Зима — лыжи и сноуборд</h3>
+          <ul>
+            <li>Термобельё и флисовый слой</li>
+            <li>Непромокаемая куртка и штаны</li>
+            <li>Перчатки и запасные варежки</li>
+            <li>Шлем и горнолыжная маска или очки</li>
+            <li>Солнцезащитный крем — в горах жжёт даже зимой</li>
+            <li>Вода и лёгкий перекус</li>
+            <li>Паспорт или документ, подтверждающий личность</li>
+          </ul>
+        </div>
+        <div class="checklist-card" data-season-strip="summer">
+          <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="flex:none;"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>Лето — походы и восхождения</h3>
+          <ul>
+            <li>Треккинговые ботинки, разношенные заранее</li>
+            <li>Рюкзак и дождевик</li>
+            <li>Головной убор и солнцезащитный крем</li>
+            <li>Аптечка и средство от насекомых</li>
+            <li>Запас воды и перекус на маршрут</li>
+            <li>Паспорт или документ, подтверждающий личность</li>
+          </ul>
+        </div>
+      </div>
+      <div class="checklist-actions">
+        <button class="btn btn-primary no-print" id="checklistPrint">Скачать / распечатать чек-лист</button>
+        <p class="note" style="margin:0;">Список общий и ориентировочный — точные требования зависят от маршрута.</p>
+      </div>
     </section>
   </section>
 
@@ -921,6 +1047,90 @@
   });
 
   renderGrid("all");
+
+  /* ---------- filtered navigation helper (quiz + kids CTA) ---------- */
+  function goToFilteredBooking(filterValue){
+    goTo("booking", true);
+    document.querySelectorAll("#filterRow .chip").forEach(function(c){
+      c.setAttribute("aria-pressed", c.getAttribute("data-filter")===filterValue ? "true":"false");
+    });
+    renderGrid(filterValue);
+  }
+
+  var kidsCta=document.getElementById("kidsCta");
+  if(kidsCta){ kidsCta.addEventListener("click",function(){ goToFilteredBooking("kids"); }); }
+
+  /* ---------- quiz ---------- */
+  var quiz=document.getElementById("quiz");
+  if(quiz){
+    var quizSteps=quiz.querySelectorAll(".quiz-step");
+    var quizResult=document.getElementById("quizResult");
+    var quizResultTitle=document.getElementById("quizResultTitle");
+    var quizResultText=document.getElementById("quizResultText");
+    var quizGo=document.getElementById("quizGo");
+    var quizRestart=document.getElementById("quizRestart");
+    var quizProgress=document.getElementById("quizProgress");
+    var quizChosenFilter=null;
+    var quizCopy={
+      kids:{title:"Детская горнолыжная школа",text:"Инструкторы с пометкой «Работает с детьми» — индивидуальный подход к каждому начинающему."},
+      ski:{title:"Горные лыжи",text:"Инструкторы по горным лыжам для взрослых, категории A, B, C."},
+      snowboard:{title:"Сноуборд",text:"Инструкторы по сноуборду для взрослых."},
+      hiking:{title:"Походы и восхождения",text:"Летние маршруты — полное сопровождение группы от старта до финиша."}
+    };
+
+    function setQuizStep(n){
+      quizSteps.forEach(function(s){ s.classList.toggle("active", s.getAttribute("data-step")===String(n)); });
+      quizResult.classList.remove("active");
+      if(quizProgress){
+        quizProgress.querySelectorAll("[data-dot]").forEach(function(d){
+          d.classList.toggle("done", parseInt(d.getAttribute("data-dot"),10) < n);
+        });
+      }
+    }
+
+    function finishQuiz(){
+      quizSteps.forEach(function(s){ s.classList.remove("active"); });
+      var copy=quizCopy[quizChosenFilter];
+      quizResultTitle.textContent=copy.title;
+      quizResultText.textContent=copy.text;
+      quizResult.classList.add("active");
+      if(quizProgress){
+        quizProgress.querySelectorAll("[data-dot]").forEach(function(d){ d.classList.add("done"); });
+      }
+    }
+
+    quiz.addEventListener("click",function(e){
+      var btn=e.target.closest("[data-quiz-answer]");
+      if(!btn) return;
+      var answer=btn.getAttribute("data-quiz-answer");
+      if(answer==="kids-yes"){
+        quizChosenFilter="kids";
+        finishQuiz();
+      } else if(answer==="kids-no"){
+        setQuizStep(2);
+      } else {
+        quizChosenFilter=answer;
+        finishQuiz();
+      }
+    });
+
+    quizGo.addEventListener("click",function(){ if(quizChosenFilter){ goToFilteredBooking(quizChosenFilter); } });
+    quizRestart.addEventListener("click",function(){ quizChosenFilter=null; setQuizStep(1); });
+
+    setQuizStep(1);
+  }
+
+  /* ---------- gear checklist print ---------- */
+  var checklistPrint=document.getElementById("checklistPrint");
+  if(checklistPrint){
+    checklistPrint.addEventListener("click",function(){
+      document.documentElement.classList.add("print-checklist");
+      window.print();
+    });
+    window.addEventListener("afterprint",function(){
+      document.documentElement.classList.remove("print-checklist");
+    });
+  }
 
   /* ---------- modal / booking sheet ---------- */
   var overlay=document.getElementById("overlay");
