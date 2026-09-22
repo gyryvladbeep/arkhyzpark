@@ -282,6 +282,47 @@
     font-size:.82rem;color:var(--text-muted);text-align:center;line-height:1.4;
     position:relative;z-index:1;max-width:14ch;
   }
+  /* ---------- availability heatmap (illustrative — single accent hue, light->dark) ---------- */
+  .avail-grid{display:flex;gap:.6rem;margin-top:1.7rem;flex-wrap:wrap;}
+  .avail-cell{
+    flex:1;min-width:78px;border-radius:var(--radius-m);padding:1rem .5rem;text-align:center;
+    border:1px solid var(--border-soft);transition:background-color .4s var(--ease),border-color .4s var(--ease);
+  }
+  .avail-cell b{display:block;font-size:.82rem;color:var(--text);margin-bottom:.35rem;}
+  .avail-cell span{font-size:.7rem;color:var(--text);opacity:.85;}
+  .avail-cell.lvl-1{background:color-mix(in srgb, var(--accent) 14%, var(--surface));}
+  .avail-cell.lvl-2{background:color-mix(in srgb, var(--accent) 34%, var(--surface));}
+  .avail-cell.lvl-3{background:color-mix(in srgb, var(--accent) 56%, var(--surface));}
+  .avail-cell.lvl-4{background:color-mix(in srgb, var(--accent) 80%, var(--surface));}
+  .avail-legend{display:flex;gap:1.3rem;flex-wrap:wrap;margin-top:1.3rem;}
+  .avail-legend-item{display:flex;align-items:center;gap:.45rem;font-size:.82rem;color:var(--text-muted);}
+  .avail-legend-dot{width:12px;height:12px;border-radius:4px;flex:none;}
+  .avail-legend-dot.lvl-1{background:color-mix(in srgb, var(--accent) 14%, var(--surface));}
+  .avail-legend-dot.lvl-2{background:color-mix(in srgb, var(--accent) 34%, var(--surface));}
+  .avail-legend-dot.lvl-3{background:color-mix(in srgb, var(--accent) 56%, var(--surface));}
+  .avail-legend-dot.lvl-4{background:color-mix(in srgb, var(--accent) 80%, var(--surface));}
+
+  .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:1.8rem;}
+  .video-card{
+    position:relative;aspect-ratio:16/9;border-radius:var(--radius-l);overflow:hidden;
+    background:linear-gradient(160deg,var(--surface-2),var(--bg-alt));border:1px solid var(--border-soft);
+    display:flex;align-items:center;justify-content:center;
+    transition:border-color .2s var(--ease),background-color .4s var(--ease);
+  }
+  .video-card:hover{border-color:var(--accent);}
+  .video-card::before{
+    content:"";position:absolute;inset:0;opacity:.55;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 0%,var(--accent-tint),transparent 65%);
+  }
+  .play-btn{
+    position:relative;z-index:1;width:56px;height:56px;border-radius:50%;
+    background:var(--accent-tint);border:1px solid var(--accent-border);
+    display:flex;align-items:center;justify-content:center;color:var(--accent-strong);
+  }
+  .video-caption{
+    position:absolute;left:.9rem;bottom:.8rem;z-index:1;font-size:.85rem;color:var(--text);
+    background:rgba(10,14,18,.55);padding:.3rem .7rem;border-radius:999px;
+  }
   .strip[data-season-strip]{display:none;}
   :root[data-season="winter"] .strip[data-season-strip="winter"]{display:flex;}
   :root[data-season="summer"] .strip[data-season-strip="summer"]{display:flex;}
@@ -416,6 +457,11 @@
   .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent);outline:none;}
   .field-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
   @media (max-width:420px){.field-row{grid-template-columns:1fr;}}
+  .checkbox-field{
+    display:flex;align-items:center;gap:.6rem;margin-top:1.1rem;font-size:.9rem;color:var(--text);cursor:pointer;
+  }
+  .checkbox-field input{width:17px;height:17px;flex:none;accent-color:var(--accent);}
+  .field-hint{font-size:.8rem;color:var(--accent-2-strong);margin-top:.2rem;}
   .confirm{
     text-align:center;padding-block:1.4rem;display:flex;flex-direction:column;align-items:center;gap:.7rem;
   }
@@ -685,6 +731,24 @@
     </section>
 
     <section class="block wrap reveal">
+      <p class="kicker">Видео</p>
+      <h2 style="font-size:1.5rem;margin-top:.3rem;">Инструктора и маршруты в движении</h2>
+      <div class="video-grid">
+        <div class="video-card">
+          <span class="example-tag">Пример</span>
+          <span class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="video-caption">Инструктор о маршруте</span>
+        </div>
+        <div class="video-card">
+          <span class="example-tag">Пример</span>
+          <span class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="video-caption">Съёмка с маршрута</span>
+        </div>
+      </div>
+      <p class="note"><b>Заглушка.</b> Слоты готовы под реальные ролики — короткое интро от инструктора или кадры с маршрута. Пришлите видео, и мы встроим плеер.</p>
+    </section>
+
+    <section class="block wrap reveal">
       <p class="kicker">Команда и направления</p>
       <h2 style="font-size:1.6rem;margin-top:.4rem;">Два направления — одна команда</h2>
       <p class="intro">«Архызпарк» — 9 лет на рынке, компанию создал Вячеслав Греков. Сегодня это команда сертифицированных инструкторов категорий A, B, C и международного уровня, которые круглый год сопровождают группы в горах Архыза.</p>
@@ -697,6 +761,28 @@
 
   <!-- ================= BOOKING ================= -->
   <section class="page" data-page="booking" hidden>
+    <section class="block wrap reveal" style="padding-bottom:0;">
+      <p class="kicker">Ориентир</p>
+      <h2 style="font-size:1.5rem;">Обычная загруженность по дням недели</h2>
+      <p class="intro">Пример — не привязан к реальным датам, показывает общий характер спроса, чтобы проще было планировать.</p>
+      <div class="avail-grid" role="list">
+        <div class="avail-cell lvl-1" role="listitem"><b>Пн</b><span>Свободно</span></div>
+        <div class="avail-cell lvl-1" role="listitem"><b>Вт</b><span>Свободно</span></div>
+        <div class="avail-cell lvl-2" role="listitem"><b>Ср</b><span>Средне</span></div>
+        <div class="avail-cell lvl-2" role="listitem"><b>Чт</b><span>Средне</span></div>
+        <div class="avail-cell lvl-3" role="listitem"><b>Пт</b><span>Плотно</span></div>
+        <div class="avail-cell lvl-4" role="listitem"><b>Сб</b><span>Мало мест</span></div>
+        <div class="avail-cell lvl-4" role="listitem"><b>Вс</b><span>Мало мест</span></div>
+      </div>
+      <div class="avail-legend">
+        <div class="avail-legend-item"><span class="avail-legend-dot lvl-1"></span>Свободно</div>
+        <div class="avail-legend-item"><span class="avail-legend-dot lvl-2"></span>Средне</div>
+        <div class="avail-legend-item"><span class="avail-legend-dot lvl-3"></span>Плотно</div>
+        <div class="avail-legend-item"><span class="avail-legend-dot lvl-4"></span>Мало мест</div>
+      </div>
+      <p class="note"><b>Демо.</b> Здесь появится реальный календарь занятости после подключения к системе бронирования.</p>
+    </section>
+
     <section class="block wrap reveal" style="padding-bottom:0;">
       <p class="kicker">Инструктора</p>
       <h2>Выберите инструктора</h2>
@@ -871,6 +957,15 @@
         <div class="field-row">
           <div class="field"><label for="fDate">Дата</label><input id="fDate" name="date" type="date"></div>
           <div class="field"><label for="fTime">Время</label><input id="fTime" name="time" type="time"></div>
+        </div>
+        <label class="checkbox-field">
+          <input type="checkbox" id="fGroup" name="group">
+          <span>Групповая или корпоративная заявка</span>
+        </label>
+        <div class="field" id="fGroupSizeWrap" hidden>
+          <label for="fGroupSize">Количество участников</label>
+          <input id="fGroupSize" name="groupSize" type="number" min="1" placeholder="Например, 14">
+          <p class="field-hint" id="fGroupSizeHint" hidden>На группу от 10 человек «Архызпарк» ставит двух инструкторов — это требование безопасности, учтём автоматически.</p>
         </div>
         <div class="field"><label for="fComment">Комментарий</label><textarea id="fComment" name="comment" rows="3" placeholder="Опыт, пожелания, возраст участников — что важно знать инструктору"></textarea></div>
         <button class="btn btn-primary btn-block" type="submit" style="margin-top:1.2rem;">Отправить заявку</button>
@@ -1173,6 +1268,22 @@
   document.getElementById("bookingForm").addEventListener("submit",function(e){
     e.preventDefault();
     showStep(stepConfirm);
+  });
+
+  /* ---------- group / corporate booking ---------- */
+  var fGroup=document.getElementById("fGroup");
+  var fGroupSizeWrap=document.getElementById("fGroupSizeWrap");
+  var fGroupSize=document.getElementById("fGroupSize");
+  var fGroupSizeHint=document.getElementById("fGroupSizeHint");
+
+  fGroup.addEventListener("change",function(){
+    fGroupSizeWrap.hidden=!fGroup.checked;
+    if(!fGroup.checked){ fGroupSize.value=""; fGroupSizeHint.hidden=true; }
+  });
+
+  fGroupSize.addEventListener("input",function(){
+    var n=parseInt(fGroupSize.value,10);
+    fGroupSizeHint.hidden = !(n>=10);
   });
 
   /* ---------- FAQ ---------- */
