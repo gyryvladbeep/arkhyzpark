@@ -602,6 +602,24 @@
     html.print-journal .stamp{border-color:#333;color:#333;}
   }
 
+  /* ---------- reviews widget slot ---------- */
+  .reviews-slot{
+    margin-top:1.8rem;border:1.5px dashed var(--border);border-radius:var(--radius-l);
+    padding:2.2rem 1.5rem;text-align:center;background:var(--surface);
+  }
+  .reviews-stars{display:flex;justify-content:center;gap:.3rem;color:var(--text-faint);margin-bottom:1rem;}
+  .reviews-slot p{color:var(--text-muted);max-width:44ch;margin:0 auto;}
+  .reviews-platforms{display:flex;justify-content:center;gap:.7rem;margin-top:1.2rem;flex-wrap:wrap;}
+  .reviews-platform-tag{
+    font-size:.78rem;color:var(--text-muted);border:1px solid var(--border-soft);
+    padding:.35rem .75rem;border-radius:999px;
+  }
+  .reviews-widget-frame{width:100%;border:none;border-radius:var(--radius-m);min-height:340px;}
+
+  /* ---------- blog / journal accordion reuses .faq-item styling ---------- */
+  .blog-item .faq-q span:first-child{display:flex;flex-direction:column;gap:.3rem;}
+  .blog-tag{font-size:.72rem;color:var(--accent-strong);text-transform:uppercase;letter-spacing:.05em;}
+
   /* ---------- footer ---------- */
   footer.site{border-top:1px solid var(--border-soft);background:var(--bg-alt);padding-block:2.4rem;}
   .foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.6rem;}
@@ -654,6 +672,7 @@
       <button data-nav="home">Главная</button>
       <button data-nav="booking">Забронировать инструктора</button>
       <button data-nav="about">О компании</button>
+      <button data-nav="blog">Журнал</button>
       <button data-nav="faq">Популярные вопросы</button>
     </nav>
     <div class="season-toggle" role="group" aria-label="Сезонная тема">
@@ -966,6 +985,27 @@
     </section>
 
     <section class="block wrap reveal">
+      <p class="kicker">Отзывы</p>
+      <h2>Что говорят клиенты</h2>
+      <p class="intro">Показываем отзывы с Яндекс.Карт и 2ГИС напрямую — без формы на сайте. Отзывы там проходят проверку самих платформ, поэтому накрутить их так же просто не получится.</p>
+      <div class="reviews-slot" id="reviewsSlot">
+        <div class="reviews-stars" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3 6.5 7 1-5 5 1.3 7-6.3-3.5L5.7 21.5 7 14.5l-5-5 7-1z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3 6.5 7 1-5 5 1.3 7-6.3-3.5L5.7 21.5 7 14.5l-5-5 7-1z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3 6.5 7 1-5 5 1.3 7-6.3-3.5L5.7 21.5 7 14.5l-5-5 7-1z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3 6.5 7 1-5 5 1.3 7-6.3-3.5L5.7 21.5 7 14.5l-5-5 7-1z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3 6.5 7 1-5 5 1.3 7-6.3-3.5L5.7 21.5 7 14.5l-5-5 7-1z"/></svg>
+        </div>
+        <p>Здесь встанет живой виджет отзывов компании — подставим сразу, как только пришлёте ссылку на профиль «Архызпарк» в Яндекс.Картах или 2ГИС.</p>
+        <div class="reviews-platforms">
+          <span class="reviews-platform-tag">Яндекс.Карты</span>
+          <span class="reviews-platform-tag">2ГИС</span>
+        </div>
+      </div>
+      <p class="note"><b>Дополнить:</b> если профиля компании там ещё нет — заведём вместе, это займёт несколько минут и сразу даст площадку для настоящих отзывов.</p>
+    </section>
+
+    <section class="block wrap reveal">
       <div class="highlight-box" style="margin-top:0;">
         <p class="kicker">Детская горнолыжная школа</p>
         <h2 style="font-size:1.5rem;margin-top:.3rem;">Персональный подход к каждому юному спортсмену</h2>
@@ -1038,6 +1078,17 @@
         <button class="btn btn-primary no-print" id="checklistPrint">Скачать / распечатать чек-лист</button>
         <p class="note" style="margin:0;">Список общий и ориентировочный — точные требования зависят от маршрута.</p>
       </div>
+    </section>
+  </section>
+
+  <!-- ================= BLOG ================= -->
+  <section class="page" data-page="blog" hidden>
+    <section class="block wrap reveal">
+      <p class="kicker">Журнал</p>
+      <h2>Заметки о походах и трассах</h2>
+      <p class="intro">Короткие материалы от инструкторов — советы по подготовке, разборы маршрутов, частые вопросы новичков. Раздел наполняется постепенно.</p>
+      <p class="note"><b>Пример структуры.</b> Заголовки ниже показывают формат раздела — реальные статьи и даты публикаций добавит заказчик.</p>
+      <div id="blogList"></div>
     </section>
   </section>
 
@@ -1120,6 +1171,7 @@
         <h4>Разделы</h4>
         <a data-nav="booking" href="#" role="button">Забронировать инструктора</a>
         <a data-nav="about" href="#" role="button">О компании</a>
+        <a data-nav="blog" href="#" role="button">Журнал</a>
         <a data-nav="faq" href="#" role="button">Популярные вопросы</a>
       </div>
     </div>
@@ -1360,6 +1412,14 @@
     });
   }
 
+  /* ---------- reviews widget (ready to wire once a real profile exists) ---------- */
+  var YANDEX_REVIEWS_ORG_ID=null; /* set the org id from Яндекс.Карты/2ГИС here to go live — placeholder stays until then */
+  var reviewsSlot=document.getElementById("reviewsSlot");
+  if(reviewsSlot && YANDEX_REVIEWS_ORG_ID){
+    reviewsSlot.innerHTML =
+      '<iframe class="reviews-widget-frame" src="https://yandex.ru/maps-reviews-widget/'+YANDEX_REVIEWS_ORG_ID+'?comments" title="Отзывы Архызпарк на Яндекс.Картах"></iframe>';
+  }
+
   /* ---------- modal / booking sheet ---------- */
   var overlay=document.getElementById("overlay");
   var sheetTitle=document.getElementById("sheetTitle");
@@ -1449,6 +1509,37 @@
     q.setAttribute("aria-expanded", expanded?"false":"true");
     panel.style.maxHeight = expanded ? "" : panel.scrollHeight+"px";
   });
+
+  /* ---------- blog / journal ---------- */
+  var blogData=[
+    {tag:"Подготовка",q:"Пример статьи: как подготовиться к первому спуску",a:"Здесь будет текст статьи от инструктора — добавим, когда заказчик пришлёт материалы. Формат: советы по снаряжению, одежде и настрою перед первым занятием."},
+    {tag:"Маршруты",q:"Пример статьи: разбор одного из летних маршрутов",a:"Здесь будет репортаж с реального маршрута — протяжённость, набор высоты, что взять с собой. Наполнит заказчик реальными материалами и фото."},
+    {tag:"Вопросы новичков",q:"Пример статьи: частые ошибки новичков на трассе",a:"Здесь будет разбор типичных ситуаций от инструкторов — что учесть перед первым выездом. Материал добавит заказчик."}
+  ];
+
+  var blogList=document.getElementById("blogList");
+  if(blogList){
+    blogData.forEach(function(item,idx){
+      var wrap=document.createElement("div");
+      wrap.className="faq-item blog-item";
+      var btnId="blogQ"+idx, panelId="blogA"+idx;
+      wrap.innerHTML =
+        '<button class="faq-q" id="'+btnId+'" aria-expanded="false" aria-controls="'+panelId+'">'+
+          '<span><span class="blog-tag">'+item.tag+'</span>'+item.q+'</span><span class="plus mono">+</span>'+
+        '</button>'+
+        '<div class="faq-a" id="'+panelId+'" role="region" aria-labelledby="'+btnId+'"><p>'+item.a+'</p></div>';
+      blogList.appendChild(wrap);
+    });
+
+    blogList.addEventListener("click",function(e){
+      var q=e.target.closest(".faq-q");
+      if(!q) return;
+      var panel=document.getElementById(q.getAttribute("aria-controls"));
+      var expanded=q.getAttribute("aria-expanded")==="true";
+      q.setAttribute("aria-expanded", expanded?"false":"true");
+      panel.style.maxHeight = expanded ? "" : panel.scrollHeight+"px";
+    });
+  }
 
 })();
 </script>
