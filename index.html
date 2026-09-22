@@ -339,6 +339,35 @@
   .checklist-card[data-season-strip]{display:none;}
   :root[data-season="winter"] .checklist-card[data-season-strip="winter"]{display:block;}
   :root[data-season="summer"] .checklist-card[data-season-strip="summer"]{display:block;}
+  .lead span[data-season-strip],.note span[data-season-strip],h2 span[data-season-strip],.kicker span[data-season-strip],.intro span[data-season-strip]{display:none;}
+  :root[data-season="winter"] .lead span[data-season-strip="winter"],
+  :root[data-season="winter"] .note span[data-season-strip="winter"],
+  :root[data-season="winter"] h2 span[data-season-strip="winter"],
+  :root[data-season="winter"] .kicker span[data-season-strip="winter"],
+  :root[data-season="winter"] .intro span[data-season-strip="winter"]{display:inline;}
+  :root[data-season="summer"] .lead span[data-season-strip="summer"],
+  :root[data-season="summer"] .note span[data-season-strip="summer"],
+  :root[data-season="summer"] h2 span[data-season-strip="summer"],
+  :root[data-season="summer"] .kicker span[data-season-strip="summer"],
+  :root[data-season="summer"] .intro span[data-season-strip="summer"]{display:inline;}
+  .value-grid[data-season-strip]{display:none;}
+  :root[data-season="winter"] .value-grid[data-season-strip="winter"]{display:grid;}
+  :root[data-season="summer"] .value-grid[data-season-strip="summer"]{display:grid;}
+  section.block[data-season-strip]{display:none;}
+  :root[data-season="winter"] section.block[data-season-strip="winter"]{display:block;}
+  :root[data-season="summer"] section.block[data-season-strip="summer"]{display:block;}
+  .chip[data-season-strip]{display:none;}
+  :root[data-season="winter"] .chip[data-season-strip="winter"]{display:inline-flex;}
+  :root[data-season="summer"] .chip[data-season-strip="summer"]{display:inline-flex;}
+  .card[data-season-strip]{display:none;}
+  :root[data-season="winter"] .card[data-season-strip="winter"]{display:flex;}
+  :root[data-season="summer"] .card[data-season-strip="summer"]{display:flex;}
+  .video-card[data-season-strip]{display:none;}
+  :root[data-season="winter"] .video-card[data-season-strip="winter"]{display:flex;}
+  :root[data-season="summer"] .video-card[data-season-strip="summer"]{display:flex;}
+  .quiz-options [data-season-strip]{display:none;}
+  :root[data-season="winter"] .quiz-options [data-season-strip="winter"]{display:inline-block;}
+  :root[data-season="summer"] .quiz-options [data-season-strip="summer"]{display:inline-block;}
 
   /* ---------- process steps ---------- */
   .process-grid{
@@ -705,7 +734,7 @@
     <nav class="primary" id="primaryNav">
       <button data-nav="home">Главная</button>
       <button data-nav="booking">Забронировать инструктора</button>
-      <button data-nav="routes">Летние маршруты</button>
+      <button data-nav="routes">Маршруты</button>
       <button data-nav="about">О компании</button>
       <button data-nav="blog">Журнал</button>
       <button data-nav="faq">Популярные вопросы</button>
@@ -740,7 +769,7 @@
         <div>
           <p class="eyebrow">АРХЫЗ · КАВКАЗ</p>
           <h1>Горы Архыза — с инструктором, который отвечает за маршрут</h1>
-          <p class="lead">Зимой — обучение и сопровождение на лыжах и сноуборде, для детей и взрослых. Летом — походы, восхождения и экскурсии. 9 лет сопровождаем группы в горах Архыза, все инструктора аттестованы и сертифицированы.</p>
+          <p class="lead"><span data-season-strip="winter">Зимой — обучение и сопровождение на лыжах и сноуборде, для детей и взрослых.</span><span data-season-strip="summer">Летом — походы, восхождения и экскурсии.</span> 9 лет сопровождаем группы в горах Архыза, все инструктора аттестованы и сертифицированы.</p>
           <div class="hero-cta">
             <button class="btn btn-primary" data-nav="booking">Забронировать инструктора</button>
             <button class="btn btn-ghost" data-nav="about">О компании</button>
@@ -865,9 +894,9 @@
         <div class="quiz-step" data-step="2">
           <p class="quiz-q">Что вам ближе?</p>
           <div class="quiz-options">
-            <button class="btn btn-ghost" data-quiz-answer="ski">Лыжи</button>
-            <button class="btn btn-ghost" data-quiz-answer="snowboard">Сноуборд</button>
-            <button class="btn btn-ghost" data-quiz-answer="hiking">Поход, восхождение</button>
+            <button class="btn btn-ghost" data-quiz-answer="ski" data-season-strip="winter">Лыжи</button>
+            <button class="btn btn-ghost" data-quiz-answer="snowboard" data-season-strip="winter">Сноуборд</button>
+            <button class="btn btn-ghost" data-quiz-answer="hiking" data-season-strip="summer">Поход, восхождение</button>
           </div>
         </div>
         <div class="quiz-result" id="quizResult">
@@ -939,12 +968,22 @@
       <p class="kicker">Видео</p>
       <h2 style="font-size:1.5rem;margin-top:.3rem;">Инструктора и маршруты в движении</h2>
       <div class="video-grid">
-        <div class="video-card">
+        <div class="video-card" data-season-strip="winter">
+          <span class="example-tag">Пример</span>
+          <span class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="video-caption">Инструктор о трассе</span>
+        </div>
+        <div class="video-card" data-season-strip="winter">
+          <span class="example-tag">Пример</span>
+          <span class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="video-caption">Катание на склоне</span>
+        </div>
+        <div class="video-card" data-season-strip="summer">
           <span class="example-tag">Пример</span>
           <span class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
           <span class="video-caption">Инструктор о маршруте</span>
         </div>
-        <div class="video-card">
+        <div class="video-card" data-season-strip="summer">
           <span class="example-tag">Пример</span>
           <span class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
           <span class="video-caption">Съёмка с маршрута</span>
@@ -966,12 +1005,22 @@
 
     <section class="block wrap reveal">
       <p class="kicker">Команда и направления</p>
-      <h2 style="font-size:1.6rem;margin-top:.4rem;">Два направления — одна команда</h2>
-      <p class="intro">«Архызпарк» — 9 лет на рынке, компанию создал Вячеслав Греков. Сегодня это команда сертифицированных инструкторов категорий A, B, C и международного уровня, которые круглый год сопровождают группы в горах Архыза.</p>
-      <div class="value-grid">
-        <div class="value"><b>Зима</b><p>Лыжи и сноуборд — для взрослых и детей. Отдельное направление — горнолыжная школа с индивидуальным подходом к каждому начинающему.</p></div>
-        <div class="value"><b>Лето</b><p>Походы, восхождения и экскурсии. Полное сопровождение группы от старта до финиша, заброски по маршруту.</p></div>
+      <h2 style="font-size:1.6rem;margin-top:.4rem;"><span data-season-strip="winter">Зима — лыжи и сноуборд</span><span data-season-strip="summer">Лето — походы и восхождения</span></h2>
+      <p class="intro">«Архызпарк» — 9 лет на рынке, компанию создал Вячеслав Греков. Команда сертифицированных инструкторов категорий A, B, C и международного уровня круглый год сопровождает группы в горах Архыза.</p>
+      <div class="value-grid" data-season-strip="winter">
+        <div class="value"><b>Лыжи и сноуборд</b><p>Для взрослых и детей — обучение и сопровождение на маршруте.</p></div>
+        <div class="value"><b>Детская горнолыжная школа</b><p>Индивидуальный подход к каждому начинающему, а не групповой стандарт.</p></div>
+        <div class="value"><b>Категории A · B · C</b><p>И специалисты международного уровня для сложных маршрутов.</p></div>
       </div>
+      <div class="value-grid" data-season-strip="summer">
+        <div class="value"><b>Походы и восхождения</b><p>От прогулочных маршрутов выходного дня до многодневных восхождений.</p></div>
+        <div class="value"><b>Экскурсии по окрестностям</b><p>Смотровые точки и знаковые места Архыза — подходит семьям с детьми.</p></div>
+        <div class="value"><b>Полное сопровождение</b><p>Инструктор ведёт группу от старта до финиша, включая заброски по маршруту.</p></div>
+      </div>
+      <p class="note" style="margin-top:1.4rem;">
+        <span data-season-strip="winter">Работаем круглый год — переключите тему сайта на «Лето» вверху, чтобы увидеть летние маршруты.</span>
+        <span data-season-strip="summer">Работаем круглый год — переключите тему сайта на «Зима» вверху, чтобы увидеть зимние трассы и детскую школу.</span>
+      </p>
     </section>
   </section>
 
@@ -1014,10 +1063,10 @@
       <div class="filters" id="filterRow">
         <button class="chip" data-filter="all" aria-pressed="true">Все</button>
         <button class="chip" data-filter="adult" aria-pressed="false">Взрослым</button>
-        <button class="chip" data-filter="kids" aria-pressed="false">Детям</button>
-        <button class="chip" data-filter="ski" aria-pressed="false">Лыжи</button>
-        <button class="chip" data-filter="snowboard" aria-pressed="false">Сноуборд</button>
-        <button class="chip" data-filter="hiking" aria-pressed="false">Походы</button>
+        <button class="chip" data-filter="kids" aria-pressed="false" data-season-strip="winter">Детям</button>
+        <button class="chip" data-filter="ski" aria-pressed="false" data-season-strip="winter">Лыжи</button>
+        <button class="chip" data-filter="snowboard" aria-pressed="false" data-season-strip="winter">Сноуборд</button>
+        <button class="chip" data-filter="hiking" aria-pressed="false" data-season-strip="summer">Походы</button>
       </div>
       <p class="note"><b>Пример данных.</b> Карточки ниже показывают структуру раздела — реальные инструктора, фото, описания и отзывы добавит заказчик.</p>
       <div class="grid" id="instructorGrid"></div>
@@ -1051,15 +1100,71 @@
     </section>
   </section>
 
-  <!-- ================= ROUTES (SUMMER) ================= -->
+  <!-- ================= ROUTES (SEASON-REACTIVE) ================= -->
   <section class="page" data-page="routes" hidden>
     <section class="block wrap reveal">
-      <p class="kicker">Лето</p>
-      <h2>Летние маршруты</h2>
-      <p class="intro">Походы, восхождения, экскурсии и заброски по маршруту — карточки ниже показывают структуру раздела. Реальные маршруты, расстояния и точки старта добавит заказчик.</p>
+      <p class="kicker"><span data-season-strip="winter">Зима</span><span data-season-strip="summer">Лето</span></p>
+      <h2>Маршруты</h2>
+      <p class="intro"><span data-season-strip="winter">Учебный склон, трассы с инструктором, фрирайд и обзорные точки — карточки ниже показывают структуру раздела. Реальные трассы, уровни и точки старта добавит заказчик.</span><span data-season-strip="summer">Походы, восхождения, экскурсии и заброски по маршруту — карточки ниже показывают структуру раздела. Реальные маршруты, расстояния и точки старта добавит заказчик.</span></p>
       <p class="note"><b>Пример данных.</b> Названия и описания условные — под настоящие маршруты подставим точные факты.</p>
       <div class="grid">
-        <div class="card" style="cursor:default;">
+        <div class="card" style="cursor:default;" data-season-strip="winter">
+          <div class="card-photo">
+            <span class="example-tag">Пример</span>
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent-strong);"><path d="M4 20l4-12 3 4 2-6 3 5 4-8"/><circle cx="19" cy="4" r="1.3" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="card-body">
+            <h3>Занятие на учебном склоне</h3>
+            <div class="tag-row">
+              <span class="tag">Однодневный</span>
+              <span class="badge-diff easy">Лёгкий</span>
+            </div>
+            <p style="font-size:.88rem;color:var(--text-muted);">Первое знакомство с лыжами или сноубордом — пологий склон, разбор техники и полное сопровождение инструктора.</p>
+          </div>
+        </div>
+        <div class="card" style="cursor:default;" data-season-strip="winter">
+          <div class="card-photo">
+            <span class="example-tag">Пример</span>
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent-strong);"><path d="M3 19l5-3 3 2 4-3 6-4"/><path d="M15 8l3 2 2-1"/></svg>
+          </div>
+          <div class="card-body">
+            <h3>Катание по трассе с инструктором</h3>
+            <div class="tag-row">
+              <span class="tag">Однодневный</span>
+              <span class="badge-diff medium">Средний</span>
+            </div>
+            <p style="font-size:.88rem;color:var(--text-muted);">Сопровождение на трассе для уверенно стоящих на лыжах или сноуборде — постановка техники и разбор рельефа.</p>
+          </div>
+        </div>
+        <div class="card" style="cursor:default;" data-season-strip="winter">
+          <div class="card-photo">
+            <span class="example-tag">Пример</span>
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent-strong);"><path d="M2 20l7-14 4 7 3-5 6 12"/></svg>
+          </div>
+          <div class="card-body">
+            <h3>Фрирайд и внетрассовое катание</h3>
+            <div class="tag-row">
+              <span class="tag">Многодневный</span>
+              <span class="badge-diff hard">Сложный</span>
+            </div>
+            <p style="font-size:.88rem;color:var(--text-muted);">Для подготовленных райдеров — сопровождают инструктора категории B/C или международного уровня.</p>
+          </div>
+        </div>
+        <div class="card" style="cursor:default;" data-season-strip="winter">
+          <div class="card-photo">
+            <span class="example-tag">Пример</span>
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent-strong);"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
+          </div>
+          <div class="card-body">
+            <h3>Экскурсия к обзорным точкам</h3>
+            <div class="tag-row">
+              <span class="tag">Однодневный</span>
+              <span class="badge-diff easy">Лёгкий</span>
+            </div>
+            <p style="font-size:.88rem;color:var(--text-muted);">Смотровые площадки и знаковые зимние виды Архыза — подходит семьям с детьми, без спортивной подготовки.</p>
+          </div>
+        </div>
+        <div class="card" style="cursor:default;" data-season-strip="summer">
           <div class="card-photo">
             <span class="example-tag">Пример</span>
             <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent-strong);"><path d="M3 20l6-8 4 5 3-4 5 7"/><circle cx="17" cy="6" r="2.5"/></svg>
@@ -1073,7 +1178,7 @@
             <p style="font-size:.88rem;color:var(--text-muted);">Прогулочный маршрут для тех, кто впервые в горах — без специальной подготовки, с полным сопровождением инструктора.</p>
           </div>
         </div>
-        <div class="card" style="cursor:default;">
+        <div class="card" style="cursor:default;" data-season-strip="summer">
           <div class="card-photo">
             <span class="example-tag">Пример</span>
             <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent-strong);"><path d="M2 20l7-14 4 7 3-5 6 12"/></svg>
@@ -1087,7 +1192,7 @@
             <p style="font-size:.88rem;color:var(--text-muted);">Для подготовленных участников — регистрируется в МЧС, сопровождают инструктора категории B/C или международного уровня.</p>
           </div>
         </div>
-        <div class="card" style="cursor:default;">
+        <div class="card" style="cursor:default;" data-season-strip="summer">
           <div class="card-photo">
             <span class="example-tag">Пример</span>
             <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent-strong);"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>
@@ -1101,7 +1206,7 @@
             <p style="font-size:.88rem;color:var(--text-muted);">Смотровые точки и знаковые места Архыза — подходит семьям с детьми и тем, кто хочет посмотреть, а не идти далеко.</p>
           </div>
         </div>
-        <div class="card" style="cursor:default;">
+        <div class="card" style="cursor:default;" data-season-strip="summer">
           <div class="card-photo">
             <span class="example-tag">Пример</span>
             <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent-strong);"><path d="M4 20c8 0 14-6 14-14 0-1 0-2-.5-3-6 0-11 4-13 9-1 2-1 5-.5 8z"/><path d="M6 18c3-3 6-6 11-11"/></svg>
@@ -1163,7 +1268,7 @@
       <p class="note"><b>Дополнить:</b> если профиля компании там ещё нет — заведём вместе, это займёт несколько минут и сразу даст площадку для настоящих отзывов.</p>
     </section>
 
-    <section class="block wrap reveal">
+    <section class="block wrap reveal" data-season-strip="winter">
       <div class="highlight-box" style="margin-top:0;">
         <p class="kicker">Детская горнолыжная школа</p>
         <h2 style="font-size:1.5rem;margin-top:.3rem;">Персональный подход к каждому юному спортсмену</h2>
@@ -1335,7 +1440,7 @@
       <div>
         <h4>Разделы</h4>
         <a data-nav="booking" href="#" role="button">Забронировать инструктора</a>
-        <a data-nav="routes" href="#" role="button">Летние маршруты</a>
+        <a data-nav="routes" href="#" role="button">Маршруты</a>
         <a data-nav="about" href="#" role="button">О компании</a>
         <a data-nav="blog" href="#" role="button">Журнал</a>
         <a data-nav="faq" href="#" role="button">Популярные вопросы</a>
@@ -1370,6 +1475,11 @@
     document.documentElement.setAttribute("data-season",season);
     syncSeasonButtons();
     try{ localStorage.setItem("arkhyzpark-season",season); }catch(e){}
+    var fRow=document.getElementById("filterRow");
+    if(fRow){
+      fRow.querySelectorAll(".chip").forEach(function(c){ c.setAttribute("aria-pressed", c.getAttribute("data-filter")==="all" ? "true":"false"); });
+    }
+    if(typeof renderGrid==="function"){ renderGrid("all"); }
   }
 
   winterBtn.addEventListener("click",function(){ setSeason("winter"); });
@@ -1434,10 +1544,11 @@
 
   /* ---------- instructor data (пример) ---------- */
   var instructors=[
-    {id:1,name:"Иванов Иван Иванович",cat:"Категория B",kids:false,lang:"RU / EN",dir:["Сноуборд","Лыжи"],tags:["adult","ski","snowboard"]},
-    {id:2,name:"Петрова Мария Сергеевна",cat:"Категория A",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"]},
-    {id:3,name:"Смирнов Артём Олегович",cat:"Международный уровень",kids:false,lang:"RU / EN",dir:["Походы","Восхождения"],tags:["adult","hiking"]},
-    {id:4,name:"Ахматова Дана Руслановна",cat:"Категория C",kids:true,lang:"RU",dir:["Сноуборд"],tags:["adult","kids","snowboard"]}
+    {id:1,name:"Иванов Иван Иванович",cat:"Категория B",kids:false,lang:"RU / EN",dir:["Сноуборд","Лыжи"],tags:["adult","ski","snowboard"],season:"winter"},
+    {id:2,name:"Петрова Мария Сергеевна",cat:"Категория A",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter"},
+    {id:3,name:"Смирнов Артём Олегович",cat:"Международный уровень",kids:false,lang:"RU / EN",dir:["Походы","Восхождения"],tags:["adult","hiking"],season:"summer"},
+    {id:4,name:"Ахматова Дана Руслановна",cat:"Категория C",kids:true,lang:"RU",dir:["Сноуборд"],tags:["adult","kids","snowboard"],season:"winter"},
+    {id:5,name:"Волков Егор Дмитриевич",cat:"Категория B",kids:false,lang:"RU",dir:["Экскурсии","Заброски"],tags:["adult","hiking"],season:"summer"}
   ];
 
   var grid=document.getElementById("instructorGrid");
@@ -1447,9 +1558,15 @@
     return (parts[0]?parts[0][0]:"")+(parts[1]?parts[1][0]:"");
   }
 
+  function currentSeason(){
+    return document.documentElement.getAttribute("data-season")==="summer" ? "summer" : "winter";
+  }
+
   function renderGrid(filter){
     grid.innerHTML="";
+    var season=currentSeason();
     instructors
+      .filter(function(i){ return i.season===season; })
       .filter(function(i){ return filter==="all" || i.tags.indexOf(filter)!==-1; })
       .forEach(function(i){
         var card=document.createElement("button");
@@ -1495,7 +1612,7 @@
   if(kidsCta){ kidsCta.addEventListener("click",function(){ goToFilteredBooking("kids"); }); }
 
   var routesToBooking=document.getElementById("routesToBooking");
-  if(routesToBooking){ routesToBooking.addEventListener("click",function(){ goToFilteredBooking("hiking"); }); }
+  if(routesToBooking){ routesToBooking.addEventListener("click",function(){ goToFilteredBooking(currentSeason()==="winter" ? "ski" : "hiking"); }); }
 
   /* ---------- quiz ---------- */
   var quiz=document.getElementById("quiz");
