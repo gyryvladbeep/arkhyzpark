@@ -339,7 +339,7 @@
   .checklist-card[data-season-strip]{display:none;}
   :root[data-season="winter"] .checklist-card[data-season-strip="winter"]{display:block;}
   :root[data-season="summer"] .checklist-card[data-season-strip="summer"]{display:block;}
-  .lead span[data-season-strip],.note span[data-season-strip],h2 span[data-season-strip],.kicker span[data-season-strip],.intro span[data-season-strip],.btn span[data-season-strip],[data-nav] span[data-season-strip],label span[data-season-strip]{display:none;}
+  .lead span[data-season-strip],.note span[data-season-strip],h2 span[data-season-strip],.kicker span[data-season-strip],.intro span[data-season-strip],.btn span[data-season-strip],[data-nav] span[data-season-strip],label span[data-season-strip],p span[data-season-strip]{display:none;}
   :root[data-season="winter"] .lead span[data-season-strip="winter"],
   :root[data-season="winter"] .note span[data-season-strip="winter"],
   :root[data-season="winter"] h2 span[data-season-strip="winter"],
@@ -347,7 +347,8 @@
   :root[data-season="winter"] .intro span[data-season-strip="winter"],
   :root[data-season="winter"] .btn span[data-season-strip="winter"],
   :root[data-season="winter"] [data-nav] span[data-season-strip="winter"],
-  :root[data-season="winter"] label span[data-season-strip="winter"]{display:inline;}
+  :root[data-season="winter"] label span[data-season-strip="winter"],
+  :root[data-season="winter"] p span[data-season-strip="winter"]{display:inline;}
   :root[data-season="summer"] .lead span[data-season-strip="summer"],
   :root[data-season="summer"] .note span[data-season-strip="summer"],
   :root[data-season="summer"] h2 span[data-season-strip="summer"],
@@ -355,7 +356,8 @@
   :root[data-season="summer"] .intro span[data-season-strip="summer"],
   :root[data-season="summer"] .btn span[data-season-strip="summer"],
   :root[data-season="summer"] [data-nav] span[data-season-strip="summer"],
-  :root[data-season="summer"] label span[data-season-strip="summer"]{display:inline;}
+  :root[data-season="summer"] label span[data-season-strip="summer"],
+  :root[data-season="summer"] p span[data-season-strip="summer"]{display:inline;}
   .value-grid[data-season-strip]{display:none;}
   :root[data-season="winter"] .value-grid[data-season-strip="winter"]{display:grid;}
   :root[data-season="summer"] .value-grid[data-season-strip="summer"]{display:grid;}
@@ -397,6 +399,11 @@
   }
   .process-step h3{font-size:1rem;font-weight:700;margin-bottom:.4rem;}
   .process-step p{font-size:.88rem;}
+  .timeline-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1.2rem;margin-top:1.8rem;}
+  @media (max-width:900px){.timeline-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:480px){.timeline-grid{grid-template-columns:1fr;}}
+  .timeline-step{border:1px solid var(--border-soft);border-radius:var(--radius-m);padding:1rem 1rem 1.1rem;transition:border-color .2s var(--ease),background-color .2s var(--ease);}
+  .timeline-step.stage-active{border-color:var(--accent);background:var(--accent-tint);}
 
   /* ---------- scroll reveal ---------- */
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
@@ -464,7 +471,15 @@
   }
   .tag.cat{color:var(--accent-strong);border-color:var(--accent-border);}
   .tag.kids{color:var(--accent-2-strong);border-color:var(--accent-2-border);}
+  .spec-badge{
+    display:inline-flex;align-items:center;gap:.32rem;font-size:.72rem;font-weight:600;
+    padding:.26rem .6rem;border-radius:999px;white-space:nowrap;
+    background:var(--accent-2-tint);border:1px solid var(--accent-2-border);color:var(--accent-2-strong);
+  }
+  .spec-badge svg{width:11px;height:11px;flex:none;}
   .card-body .open-hint{margin-top:auto;font-size:.82rem;color:var(--accent-strong);display:flex;align-items:center;gap:.3rem;}
+  .quick-req-btn{align-self:flex-start;margin-top:.2rem;font-size:.8rem;padding:.45rem .75rem;}
+  .quick-req-btn[disabled]{opacity:.75;cursor:default;}
 
   /* ---------- modal / bottom sheet ---------- */
   .overlay{
@@ -551,6 +566,8 @@
   .diff-dot.expert{background:var(--diff-expert);--dot-tint:var(--diff-expert-tint);}
   .diff-item b{display:block;font-size:.92rem;margin-bottom:.25rem;}
   .diff-item p{font-size:.83rem;color:var(--text-muted);}
+  .compare-chart-wrap{margin-top:1.8rem;border:1px solid var(--border-soft);border-radius:var(--radius-l);background:var(--surface);padding:1.2rem;max-width:640px;}
+  .compare-chart-wrap svg{width:100%;height:auto;display:block;}
   .badge-diff{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:600;padding:.28rem .6rem;border-radius:999px;white-space:nowrap;}
   .badge-diff::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;}
   .badge-diff.easy{background:var(--diff-easy-tint);border:1px solid var(--diff-easy-border);color:var(--diff-easy);}
@@ -607,6 +624,7 @@
   .weather-day b{display:block;color:var(--text);font-size:.88rem;margin-top:.2rem;}
   .weather-fallback{font-size:.85rem;color:var(--text-muted);margin:0;}
   .weather-fallback a{color:var(--accent-strong);}
+  .sun-times{display:flex;gap:1.8rem;flex-wrap:wrap;}
   @media print{
     .no-print,header.site,footer.site,.sticky-cta,.draft-banner,nav.primary{display:none!important;}
     html.print-checklist body>main>.page>section.block:not(#gearChecklist){display:none!important;}
@@ -664,6 +682,9 @@
   .journal-fieldlist[data-season-strip]{display:none;}
   :root[data-season="winter"] .journal-fieldlist[data-season-strip="winter"]{display:block;}
   :root[data-season="summer"] .journal-fieldlist[data-season-strip="summer"]{display:block;}
+  .journal-moods[data-season-strip]{display:none;}
+  :root[data-season="winter"] .journal-moods[data-season-strip="winter"]{display:block;}
+  :root[data-season="summer"] .journal-moods[data-season-strip="summer"]{display:block;}
   .journal-fieldlist{margin-top:1.7rem;}
   .journal-fieldrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1rem;padding:.6rem 0;border-bottom:1px solid var(--border);font-size:.85rem;}
   .journal-fieldrow b{color:var(--text);min-width:190px;flex:none;font-weight:600;}
@@ -687,6 +708,38 @@
     html.print-journal .journal-fieldrow b{color:#111;}
     html.print-journal .journal-fieldrow .fill{border-color:#333;color:#333;}
     html.print-journal .journal-fieldrow .fill i{color:#555;}
+  }
+
+  /* ---------- printable personal certificate ---------- */
+  .cert-card{
+    margin-top:1.8rem;max-width:640px;border:2px solid var(--accent-border);border-radius:var(--radius-l);
+    padding:2px;background:linear-gradient(135deg,var(--accent-tint),transparent 60%);
+  }
+  .cert-inner{
+    border:1px solid var(--border-soft);border-radius:calc(var(--radius-l) - 2px);
+    background:var(--surface);padding:clamp(1.6rem,4vw,2.6rem);text-align:center;
+  }
+  .cert-eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2-strong);}
+  .cert-title{font-size:1.5rem;margin-top:.6rem;font-family:"Big Shoulders Display",sans-serif;font-weight:700;letter-spacing:.02em;}
+  .cert-line{margin-top:1.1rem;color:var(--text-muted);font-size:.9rem;}
+  .cert-name{margin-top:.5rem;font-size:1.3rem;font-weight:700;color:var(--accent-strong);border-bottom:1px dashed var(--border);padding-bottom:.5rem;min-height:1.6em;}
+  .cert-route{margin-top:.5rem;font-size:1.1rem;font-weight:600;border-bottom:1px dashed var(--border);padding-bottom:.5rem;min-height:1.5em;}
+  .cert-date{margin-top:1rem;font-size:.85rem;color:var(--text-muted);}
+  .cert-sign{margin-top:1.6rem;display:flex;justify-content:center;font-size:.8rem;color:var(--text-faint);}
+  .cert-form{margin-top:1.8rem;max-width:640px;}
+  @media print{
+    html.print-cert body>main>.page>section.block:not(#certificateSection){display:none!important;}
+    html.print-cert #certificateSection{padding:0;}
+    html.print-cert{background:#fff;}
+    html.print-cert body{background:#fff;color:#111;}
+    html.print-cert .cert-card{border-color:#999;background:none;}
+    html.print-cert .cert-inner{border-color:#ccc;background:#fff;}
+    html.print-cert .cert-eyebrow{color:#333;}
+    html.print-cert .cert-title{color:#111;}
+    html.print-cert .cert-line,html.print-cert .cert-date{color:#333;}
+    html.print-cert .cert-name{color:#111;border-color:#333;}
+    html.print-cert .cert-route{color:#111;border-color:#333;}
+    html.print-cert .cert-sign{color:#555;}
   }
 
   /* ---------- reviews widget slot ---------- */
@@ -916,6 +969,28 @@
           </div>
         </div>
 
+        <div class="journal-moods" data-season-strip="winter">
+          <p class="journal-label">Что заметил(а) в горах?</p>
+          <div class="mood-row">
+            <span class="mood-item"><span class="mood-box"></span>Иней на деревьях</span>
+            <span class="mood-item"><span class="mood-box"></span>Пар над рекой</span>
+            <span class="mood-item"><span class="mood-box"></span>Зимняя птица</span>
+            <span class="mood-item"><span class="mood-box"></span>Следы зверя на снегу</span>
+            <span class="mood-item"><span class="mood-box"></span>Сосульки на скалах</span>
+          </div>
+        </div>
+
+        <div class="journal-moods" data-season-strip="summer">
+          <p class="journal-label">Что заметил(а) в горах?</p>
+          <div class="mood-row">
+            <span class="mood-item"><span class="mood-box"></span>Эдельвейс или горный цветок</span>
+            <span class="mood-item"><span class="mood-box"></span>Бабочка на альпийском лугу</span>
+            <span class="mood-item"><span class="mood-box"></span>Водопад или горная река</span>
+            <span class="mood-item"><span class="mood-box"></span>Облако ниже вершины</span>
+            <span class="mood-item"><span class="mood-box"></span>Сурок или другой обитатель гор</span>
+          </div>
+        </div>
+
         <div class="journal-notes">
           <p class="journal-label">Заметки с маршрута</p>
           <div class="notes-lines"><span></span><span></span><span></span></div>
@@ -932,6 +1007,39 @@
       </div>
 
       <p class="note"><b>Пример.</b> Схема маршрута условная — под реальные маршруты заказчика сделаем настоящие карты и подставим точные точки.</p>
+    </section>
+
+    <section class="block wrap reveal" id="certificateSection">
+      <p class="kicker">Сувенир</p>
+      <h2 style="font-size:1.5rem;margin-top:.3rem;">Именной сертификат участника</h2>
+      <p class="intro">Заполните поля и распечатайте на память — с названием маршрута и датой.</p>
+
+      <div class="cert-card" id="certCard">
+        <div class="cert-inner">
+          <p class="cert-eyebrow">ООО «Архызпарк» · Архыз</p>
+          <h3 class="cert-title">Сертификат участника</h3>
+          <p class="cert-line">Настоящим подтверждается, что</p>
+          <p class="cert-name" id="certNamePreview">________________________</p>
+          <p class="cert-line"><span data-season-strip="winter">успешно освоил(а)</span><span data-season-strip="summer">успешно прошёл(-ла)</span></p>
+          <p class="cert-route" id="certRoutePreview">________________________</p>
+          <p class="cert-date" id="certDatePreview">Дата: ________________________</p>
+          <div class="cert-sign"><span>Инструктор: ______________________</span></div>
+        </div>
+      </div>
+
+      <div class="cert-form no-print">
+        <div class="field-row">
+          <div class="field"><label for="certNameInput">Имя участника</label><input id="certNameInput" placeholder="Как подписать сертификат"></div>
+          <div class="field">
+            <label for="certRouteInput"><span data-season-strip="winter">Услуга</span><span data-season-strip="summer">Маршрут</span></label>
+            <select id="certRouteInput"></select>
+          </div>
+        </div>
+        <div class="field" style="max-width:240px;"><label for="certDateInput">Дата</label><input id="certDateInput" type="date"></div>
+        <button class="btn btn-primary" id="certPrint" style="margin-top:1.3rem;">Скачать / распечатать сертификат</button>
+      </div>
+
+      <p class="note" style="margin-top:1.2rem;"><b>Пример.</b> Оформление сертификата условное — сделаем в фирменном стиле «Архызпарк», когда согласуем макет с заказчиком.</p>
     </section>
 
     <section class="block wrap reveal">
@@ -1090,6 +1198,19 @@
     </section>
 
     <section class="block wrap reveal" style="padding-bottom:0;">
+      <p class="kicker">Световой день</p>
+      <h2 style="font-size:1.3rem;">Восход и закат под вашу дату</h2>
+      <p class="intro">Пригодится, чтобы попасть на смотровую в нужный свет — считаем по координатам Архыза.</p>
+      <div class="field" style="max-width:240px;margin-top:1rem;">
+        <label for="sunDateInput">Дата</label>
+        <input id="sunDateInput" type="date">
+      </div>
+      <div class="weather-card" id="sunCard" style="margin-top:1rem;">
+        <p class="weather-fallback">Выберите дату, чтобы увидеть время восхода и заката.</p>
+      </div>
+    </section>
+
+    <section class="block wrap reveal" style="padding-bottom:0;">
       <p class="kicker">Ориентир</p>
       <h2 style="font-size:1.5rem;">Обычная загруженность по дням недели</h2>
       <p class="intro">Пример — не привязан к реальным датам, показывает общий характер спроса, чтобы проще было планировать.</p>
@@ -1153,6 +1274,45 @@
         </div>
       </div>
     </section>
+
+    <section class="block wrap reveal">
+      <p class="kicker">Подготовка</p>
+      <h2 style="font-size:1.5rem;margin-top:.3rem;">Сколько до поездки</h2>
+      <p class="intro">Укажите дату — покажем, на каком этапе подготовки вы сейчас.</p>
+      <div class="field" style="max-width:240px;">
+        <label for="tripDateInput">Дата поездки</label>
+        <input id="tripDateInput" type="date">
+      </div>
+      <p class="note" id="tripCountdownNote" style="margin-top:1rem;min-height:1.3em;"></p>
+      <div class="timeline-grid" id="tripTimeline">
+        <div class="process-step timeline-step">
+          <div class="process-num">1</div>
+          <h3>За 2 недели</h3>
+          <p><span data-season-strip="winter">Забронируйте место и обсудите программу катания с инструктором.</span><span data-season-strip="summer">Забронируйте место и обсудите маршрут с инструктором.</span></p>
+        </div>
+        <div class="process-step timeline-step">
+          <div class="process-num">2</div>
+          <h3>За неделю</h3>
+          <p><span data-season-strip="winter">Проверьте снаряжение по чек-листу — уточните прокат лыж или сноуборда, если нужен.</span><span data-season-strip="summer">Проверьте снаряжение по чек-листу — разносите треккинговые ботинки заранее.</span></p>
+        </div>
+        <div class="process-step timeline-step">
+          <div class="process-num">3</div>
+          <h3>За 3 дня</h3>
+          <p><span data-season-strip="winter">Следите за прогнозом снега и погоды выше — в разделе бронирования.</span><span data-season-strip="summer">Следите за прогнозом погоды в горах — в разделе бронирования.</span></p>
+        </div>
+        <div class="process-step timeline-step">
+          <div class="process-num">4</div>
+          <h3>Накануне</h3>
+          <p><span data-season-strip="winter">Соберите вещи, зарядите телефон и экшн-камеру для трассы.</span><span data-season-strip="summer">Соберите рюкзак, зарядите телефон и проверьте дождевик.</span></p>
+        </div>
+        <div class="process-step timeline-step">
+          <div class="process-num">5</div>
+          <h3>День поездки</h3>
+          <p><span data-season-strip="winter">Встречаетесь с инструктором в оговоренном месте — дальше он ведёт группу по трассе.</span><span data-season-strip="summer">Встречаетесь с инструктором в оговоренном месте — дальше он ведёт группу по маршруту.</span></p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:1.4rem;"><b>Ориентир.</b> Этапы общие для любого маршрута — точную программу согласует инструктор.</p>
+    </section>
   </section>
 
   <!-- ================= ROUTES (SEASON-REACTIVE) ================= -->
@@ -1175,6 +1335,7 @@
               <span class="badge-diff easy">Лёгкий</span>
             </div>
             <p style="font-size:.88rem;color:var(--text-muted);">Первое знакомство с лыжами или сноубордом — пологий склон, разбор техники и полное сопровождение инструктора.</p>
+            <button class="btn btn-ghost quick-req-btn" type="button" data-route="Занятие на учебном склоне"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="7" width="13" height="13" rx="2"/><path d="M4 16V4a1 1 0 0 1 1-1h12"/></svg><span class="quick-req-label">Быстрая заявка</span></button>
           </div>
         </div>
         <div class="card" style="cursor:default;" data-season-strip="winter">
@@ -1189,6 +1350,7 @@
               <span class="badge-diff medium">Средний</span>
             </div>
             <p style="font-size:.88rem;color:var(--text-muted);">Сопровождение на трассе для уверенно стоящих на лыжах или сноуборде — постановка техники и разбор рельефа.</p>
+            <button class="btn btn-ghost quick-req-btn" type="button" data-route="Катание по трассе с инструктором"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="7" width="13" height="13" rx="2"/><path d="M4 16V4a1 1 0 0 1 1-1h12"/></svg><span class="quick-req-label">Быстрая заявка</span></button>
           </div>
         </div>
         <div class="card" style="cursor:default;" data-season-strip="winter">
@@ -1203,6 +1365,7 @@
               <span class="badge-diff hard">Сложный</span>
             </div>
             <p style="font-size:.88rem;color:var(--text-muted);">Для подготовленных райдеров — сопровождают инструктора категории B/C или международного уровня.</p>
+            <button class="btn btn-ghost quick-req-btn" type="button" data-route="Фрирайд и внетрассовое катание"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="7" width="13" height="13" rx="2"/><path d="M4 16V4a1 1 0 0 1 1-1h12"/></svg><span class="quick-req-label">Быстрая заявка</span></button>
           </div>
         </div>
         <div class="card" style="cursor:default;" data-season-strip="winter">
@@ -1217,6 +1380,7 @@
               <span class="badge-diff easy">Лёгкий</span>
             </div>
             <p style="font-size:.88rem;color:var(--text-muted);">Смотровые площадки и знаковые зимние виды Архыза — подходит семьям с детьми, без спортивной подготовки.</p>
+            <button class="btn btn-ghost quick-req-btn" type="button" data-route="Экскурсия к обзорным точкам"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="7" width="13" height="13" rx="2"/><path d="M4 16V4a1 1 0 0 1 1-1h12"/></svg><span class="quick-req-label">Быстрая заявка</span></button>
           </div>
         </div>
         <div class="card" style="cursor:default;" data-season-strip="summer">
@@ -1231,6 +1395,7 @@
               <span class="badge-diff easy">Лёгкий</span>
             </div>
             <p style="font-size:.88rem;color:var(--text-muted);">Прогулочный маршрут для тех, кто впервые в горах — без специальной подготовки, с полным сопровождением инструктора.</p>
+            <button class="btn btn-ghost quick-req-btn" type="button" data-route="Поход выходного дня"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="7" width="13" height="13" rx="2"/><path d="M4 16V4a1 1 0 0 1 1-1h12"/></svg><span class="quick-req-label">Быстрая заявка</span></button>
           </div>
         </div>
         <div class="card" style="cursor:default;" data-season-strip="summer">
@@ -1245,6 +1410,7 @@
               <span class="badge-diff hard">Сложный</span>
             </div>
             <p style="font-size:.88rem;color:var(--text-muted);">Для подготовленных участников — регистрируется в МЧС, сопровождают инструктора категории B/C или международного уровня.</p>
+            <button class="btn btn-ghost quick-req-btn" type="button" data-route="Восхождение"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="7" width="13" height="13" rx="2"/><path d="M4 16V4a1 1 0 0 1 1-1h12"/></svg><span class="quick-req-label">Быстрая заявка</span></button>
           </div>
         </div>
         <div class="card" style="cursor:default;" data-season-strip="summer">
@@ -1259,6 +1425,7 @@
               <span class="badge-diff easy">Лёгкий</span>
             </div>
             <p style="font-size:.88rem;color:var(--text-muted);">Смотровые точки и знаковые места Архыза — подходит семьям с детьми и тем, кто хочет посмотреть, а не идти далеко.</p>
+            <button class="btn btn-ghost quick-req-btn" type="button" data-route="Экскурсия по окрестностям"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="7" width="13" height="13" rx="2"/><path d="M4 16V4a1 1 0 0 1 1-1h12"/></svg><span class="quick-req-label">Быстрая заявка</span></button>
           </div>
         </div>
         <div class="card" style="cursor:default;" data-season-strip="summer">
@@ -1276,12 +1443,29 @@
               <span class="badge-eco"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20c8 0 14-6 14-14 0-1 0-2-.5-3-6 0-11 4-13 9-1 2-1 5-.5 8z"/></svg>Эко-маршрут</span>
             </div>
             <p style="font-size:.88rem;color:var(--text-muted);">Поход совмещён с заботой о природе — участники помогают убирать тропу по пути. Формат на согласовании с заказчиком.</p>
+            <button class="btn btn-ghost quick-req-btn" type="button" data-route="Эко-поход с уборкой троп"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="7" width="13" height="13" rx="2"/><path d="M4 16V4a1 1 0 0 1 1-1h12"/></svg><span class="quick-req-label">Быстрая заявка</span></button>
           </div>
         </div>
       </div>
       <div style="margin-top:1.8rem;">
         <button class="btn btn-primary" id="routesToBooking"><span data-season-strip="winter">Забронировать инструктора</span><span data-season-strip="summer">Забронировать гида</span></button>
       </div>
+      <p class="note" style="margin-top:1rem;"><b>«Быстрая заявка»</b> на карточке готовит текст сообщения и копирует его в буфер — вставьте в MAX или SMS. Прямые ссылки на мессенджеры подключим, когда заказчик пришлёт контакты.</p>
+    </section>
+
+    <section class="block wrap reveal">
+      <p class="kicker">Сравнение</p>
+      <h2 style="font-size:1.5rem;margin-top:.3rem;"><span data-season-strip="winter">Сравнение услуг</span><span data-season-strip="summer">Сравнение маршрутов</span></h2>
+      <p class="intro">Выносливость и техничность каждого варианта на одном графике — чтобы сравнить сразу несколько, а не читать карточки по одной.</p>
+      <div class="compare-chart-wrap">
+        <svg id="compareChart" viewBox="0 0 360 280" role="img" aria-label="Сравнение вариантов по выносливости и техничности"></svg>
+      </div>
+      <div class="diff-legend" style="margin-top:1.2rem;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));">
+        <div class="diff-item" style="padding:.55rem .8rem;align-items:center;"><span class="diff-dot easy"></span><b style="font-size:.82rem;">Лёгкий</b></div>
+        <div class="diff-item" style="padding:.55rem .8rem;align-items:center;"><span class="diff-dot medium"></span><b style="font-size:.82rem;">Средний</b></div>
+        <div class="diff-item" style="padding:.55rem .8rem;align-items:center;"><span class="diff-dot hard"></span><b style="font-size:.82rem;">Сложный</b></div>
+      </div>
+      <p class="note" style="margin-top:1.2rem;"><b>Ориентир.</b> Позиции на графике условные и иллюстративные — точные параметры конкретных маршрутов уточнит заказчик.</p>
     </section>
   </section>
 
@@ -1542,6 +1726,8 @@
     if(typeof renderGrid==="function"){ renderGrid("all"); }
     if(typeof renderFaqList==="function"){ renderFaqList(); }
     if(typeof renderBlogList==="function"){ renderBlogList(); }
+    if(typeof renderCertRouteOptions==="function"){ renderCertRouteOptions(); }
+    if(typeof renderCompareChart==="function"){ renderCompareChart(); }
   }
 
   winterBtn.addEventListener("click",function(){ setSeason("winter"); });
@@ -1606,12 +1792,18 @@
 
   /* ---------- instructor data (пример) ---------- */
   var instructors=[
-    {id:1,name:"Иванов Иван Иванович",cat:"Категория B",kids:false,lang:"RU / EN",dir:["Сноуборд","Лыжи"],tags:["adult","ski","snowboard"],season:"winter"},
-    {id:2,name:"Петрова Мария Сергеевна",cat:"Категория A",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter"},
-    {id:3,name:"Смирнов Артём Олегович",cat:"Международный уровень",kids:false,lang:"RU / EN",dir:["Походы","Восхождения"],tags:["adult","hiking"],season:"summer"},
-    {id:4,name:"Ахматова Дана Руслановна",cat:"Категория C",kids:true,lang:"RU",dir:["Сноуборд"],tags:["adult","kids","snowboard"],season:"winter"},
-    {id:5,name:"Волков Егор Дмитриевич",cat:"Категория B",kids:false,lang:"RU",dir:["Экскурсии","Заброски"],tags:["adult","hiking"],season:"summer"}
+    {id:1,name:"Иванов Иван Иванович",cat:"Категория B",kids:false,lang:"RU / EN",dir:["Сноуборд","Лыжи"],tags:["adult","ski","snowboard"],season:"winter",specialties:["Фрирайд"]},
+    {id:2,name:"Петрова Мария Сергеевна",cat:"Категория A",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter",specialties:["Работает с новичками","Семейные группы"]},
+    {id:3,name:"Смирнов Артём Олегович",cat:"Международный уровень",kids:false,lang:"RU / EN",dir:["Походы","Восхождения"],tags:["adult","hiking"],season:"summer",specialties:["Многодневные восхождения"]},
+    {id:4,name:"Ахматова Дана Руслановна",cat:"Категория C",kids:true,lang:"RU",dir:["Сноуборд"],tags:["adult","kids","snowboard"],season:"winter",specialties:["Работает с новичками"]},
+    {id:5,name:"Волков Егор Дмитриевич",cat:"Категория B",kids:false,lang:"RU",dir:["Экскурсии","Заброски"],tags:["adult","hiking"],season:"summer",specialties:["Фотограф маршрута"]}
   ];
+
+  var specIconSvg='<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l1.8 5.6L19.4 9l-5.6 1.8L12 16l-1.8-5.2L4.6 9l5.6-1.4L12 2z"/></svg>';
+  function specBadges(list){
+    if(!list || !list.length) return "";
+    return '<div class="tag-row">'+list.map(function(s){ return '<span class="spec-badge">'+specIconSvg+s+'</span>'; }).join("")+'</div>';
+  }
 
   var grid=document.getElementById("instructorGrid");
 
@@ -1644,6 +1836,7 @@
               '<span class="tag">'+i.lang+'</span>'+
             '</div>'+
             '<div class="tag-row">'+ i.dir.map(function(d){return '<span class="tag">'+d+'</span>';}).join("") +'</div>'+
+            specBadges(i.specialties)+
             '<div class="open-hint">Подробнее и бронирование →</div>'+
           '</div>';
         card.addEventListener("click",function(){ openSheet(i); });
@@ -1675,6 +1868,62 @@
 
   var routesToBooking=document.getElementById("routesToBooking");
   if(routesToBooking){ routesToBooking.addEventListener("click",function(){ goToFilteredBooking(currentSeason()==="winter" ? "ski" : "hiking"); }); }
+
+  /* ---------- quick copy-to-clipboard request on route/service cards ---------- */
+  document.querySelectorAll(".quick-req-btn").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var route=btn.getAttribute("data-route");
+      var noun = currentSeason()==="winter" ? "услугу" : "маршрут";
+      var text="Здравствуйте! Хочу забронировать "+noun+" «"+route+"». Подскажите ближайшие даты.";
+      var label=btn.querySelector(".quick-req-label");
+      var original=label ? label.textContent : "";
+      function showResult(ok){
+        if(!label) return;
+        label.textContent = ok ? "Скопировано!" : "Не удалось скопировать";
+        btn.disabled=true;
+        setTimeout(function(){ label.textContent=original; btn.disabled=false; },2400);
+      }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){ showResult(true); }).catch(function(){ showResult(false); });
+      } else {
+        showResult(false);
+      }
+    });
+  });
+
+  /* ---------- route/service comparison chart (endurance vs technicality) ---------- */
+  var routeStats=[
+    {season:"winter",name:"Учебный склон",tech:1,end:1,diff:"easy"},
+    {season:"winter",name:"Трасса с инструктором",tech:3,end:2,diff:"medium"},
+    {season:"winter",name:"Фрирайд",tech:5,end:4,diff:"hard"},
+    {season:"winter",name:"Обзорные точки",tech:1,end:2,diff:"easy"},
+    {season:"summer",name:"Поход выходного дня",tech:1,end:2,diff:"easy"},
+    {season:"summer",name:"Восхождение",tech:4,end:5,diff:"hard"},
+    {season:"summer",name:"Экскурсия по окрестностям",tech:1,end:1,diff:"easy"},
+    {season:"summer",name:"Эко-поход",tech:2,end:3,diff:"medium"}
+  ];
+  var compareChart=document.getElementById("compareChart");
+  function compareScaleX(v){ return 46 + (v-1)/4*260; }
+  function compareScaleY(v){ return 232 - (v-1)/4*192; }
+  function renderCompareChart(){
+    if(!compareChart) return;
+    var season=document.documentElement.getAttribute("data-season")==="summer" ? "summer" : "winter";
+    var items=routeStats.filter(function(r){ return r.season===season; });
+    var svg =
+      '<rect x="46" y="40" width="260" height="192" fill="none" stroke="var(--border)" stroke-width="1"/>'+
+      '<line x1="176" y1="40" x2="176" y2="232" stroke="var(--border)" stroke-width="1" stroke-dasharray="3 4"/>'+
+      '<line x1="46" y1="136" x2="306" y2="136" stroke="var(--border)" stroke-width="1" stroke-dasharray="3 4"/>'+
+      '<text x="176" y="256" text-anchor="middle" font-size="10" fill="var(--text-muted)">Техничность →</text>'+
+      '<text x="18" y="136" text-anchor="middle" font-size="10" fill="var(--text-muted)" transform="rotate(-90 18 136)">Выносливость →</text>';
+    items.forEach(function(r){
+      var x=compareScaleX(r.tech), y=compareScaleY(r.end);
+      var anchor = x>230 ? "end" : (x<90 ? "start" : "middle");
+      svg += '<circle cx="'+x+'" cy="'+y+'" r="7" fill="var(--diff-'+r.diff+')" stroke="var(--surface)" stroke-width="2"/>';
+      svg += '<text x="'+x+'" y="'+(y-10)+'" text-anchor="'+anchor+'" font-size="9.5" fill="var(--text)">'+r.name+'</text>';
+    });
+    compareChart.innerHTML = svg;
+  }
+  renderCompareChart();
 
   /* ---------- quiz ---------- */
   var quiz=document.getElementById("quiz");
@@ -1805,6 +2054,73 @@
       });
   }
 
+  /* ---------- sunrise/sunset for chosen trip date (Архыз, ~43.68N 41.32E) — real data via free sunrise-sunset.org API ---------- */
+  var sunDateInput=document.getElementById("sunDateInput");
+  var sunCard=document.getElementById("sunCard");
+  function sunIconSvg(rise){
+    return rise
+      ? '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="17" r="4"/><path d="M12 3v3M4.2 10.2l1.8 1.8M19.8 10.2 18 12M2 21h20M5 21a7 7 0 0 1 14 0"/></svg>'
+      : '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="14" r="4"/><path d="M12 3v3M4.2 8.2l1.8 1.8M19.8 8.2 18 10M2 21h20M5 21a7 7 0 0 1 14 0"/><path d="M2 17h2M20 17h2"/></svg>';
+  }
+  function updateSunTimes(){
+    if(!sunDateInput || !sunCard) return;
+    var val=sunDateInput.value;
+    if(!val){ sunCard.innerHTML='<p class="weather-fallback">Выберите дату, чтобы увидеть время восхода и заката.</p>'; return; }
+    sunCard.innerHTML='<p class="weather-fallback">Считаем…</p>';
+    fetch("https://api.sunrise-sunset.org/json?lat=43.68&lng=41.32&date="+val+"&formatted=0")
+      .then(function(r){ if(!r.ok) throw new Error("bad response"); return r.json(); })
+      .then(function(data){
+        if(!data.results) throw new Error("no results");
+        var rise=new Date(data.results.sunrise);
+        var set=new Date(data.results.sunset);
+        var fmt=function(d){ return d.toLocaleTimeString("ru-RU",{timeZone:"Europe/Moscow",hour:"2-digit",minute:"2-digit"}); };
+        var lenSec=data.results.day_length;
+        var lenH=Math.floor(lenSec/3600), lenM=Math.round((lenSec%3600)/60);
+        sunCard.innerHTML =
+          '<div style="display:flex;flex-direction:column;gap:.7rem;width:100%;">'+
+            '<div class="sun-times">'+
+              '<div class="weather-now">'+sunIconSvg(true)+'<div><b>'+fmt(rise)+'</b><span class="weather-label">Восход · Архыз</span></div></div>'+
+              '<div class="weather-now">'+sunIconSvg(false)+'<div><b>'+fmt(set)+'</b><span class="weather-label">Закат · Архыз</span></div></div>'+
+            '</div>'+
+            '<p class="weather-fallback">Длина дня: '+lenH+' ч '+lenM+' мин</p>'+
+          '</div>';
+      })
+      .catch(function(){
+        sunCard.innerHTML='<p class="weather-fallback">Не удалось посчитать восход и закат для этой даты. Попробуйте ещё раз.</p>';
+      });
+  }
+  if(sunDateInput){ sunDateInput.addEventListener("change",updateSunTimes); }
+
+  /* ---------- trip-prep countdown timeline ---------- */
+  var tripDateInput=document.getElementById("tripDateInput");
+  var tripCountdownNote=document.getElementById("tripCountdownNote");
+  var tripSteps=document.querySelectorAll("#tripTimeline .timeline-step");
+  function ruDays(n){
+    var n10=n%10, n100=n%100;
+    if(n100>=11 && n100<=14) return "дней";
+    if(n10===1) return "день";
+    if(n10>=2 && n10<=4) return "дня";
+    return "дней";
+  }
+  function updateTripTimeline(){
+    if(!tripDateInput) return;
+    tripSteps.forEach(function(s){ s.classList.remove("stage-active"); });
+    var val=tripDateInput.value;
+    if(!val){ tripCountdownNote.textContent=""; return; }
+    var today=new Date(); today.setHours(0,0,0,0);
+    var target=new Date(val+"T00:00:00");
+    var days=Math.round((target-today)/86400000);
+    if(days<0){ tripCountdownNote.textContent="Эта дата уже прошла — выберите новую, чтобы увидеть таймлайн."; return; }
+    var stageIdx;
+    if(days===0){ stageIdx=4; tripCountdownNote.textContent="Сегодня день поездки!"; }
+    else if(days===1){ stageIdx=3; tripCountdownNote.textContent="Остался 1 день до поездки."; }
+    else if(days<=3){ stageIdx=2; tripCountdownNote.textContent="Осталось "+days+" "+ruDays(days)+" до поездки."; }
+    else if(days<=9){ stageIdx=1; tripCountdownNote.textContent="Осталось "+days+" "+ruDays(days)+" до поездки."; }
+    else { stageIdx=0; tripCountdownNote.textContent="Осталось "+days+" "+ruDays(days)+" до поездки."; }
+    if(tripSteps[stageIdx]){ tripSteps[stageIdx].classList.add("stage-active"); }
+  }
+  if(tripDateInput){ tripDateInput.addEventListener("change",updateTripTimeline); }
+
   /* ---------- modal / booking sheet ---------- */
   var overlay=document.getElementById("overlay");
   var sheetTitle=document.getElementById("sheetTitle");
@@ -1826,7 +2142,8 @@
     sheetTags.innerHTML =
       '<span class="tag cat">'+instructor.cat+'</span>'+
       (instructor.kids ? '<span class="tag kids">Работает с детьми</span>' : '<span class="tag">Не работает с детьми</span>')+
-      '<span class="tag">'+instructor.lang+'</span>';
+      '<span class="tag">'+instructor.lang+'</span>'+
+      specBadges(instructor.specialties);
     showStep(stepDetail);
     overlay.classList.add("open");
     document.getElementById("sheetClose").focus();
@@ -1858,6 +2175,55 @@
   }
 
   document.getElementById("toBookingStep").addEventListener("click",function(){ renderRouteOptions(); showStep(stepForm); });
+
+  /* ---------- printable personal certificate ---------- */
+  var certRouteInput=document.getElementById("certRouteInput");
+  var certNameInput=document.getElementById("certNameInput");
+  var certDateInput=document.getElementById("certDateInput");
+  var certNamePreview=document.getElementById("certNamePreview");
+  var certRoutePreview=document.getElementById("certRoutePreview");
+  var certDatePreview=document.getElementById("certDatePreview");
+
+  function updateCertPreview(){
+    if(certNamePreview){ certNamePreview.textContent = certNameInput && certNameInput.value ? certNameInput.value : "________________________"; }
+    if(certRoutePreview){ certRoutePreview.textContent = certRouteInput && certRouteInput.value ? certRouteInput.value : "________________________"; }
+    if(certDatePreview){
+      var val=certDateInput ? certDateInput.value : "";
+      var label="________________________";
+      if(val){ var d=new Date(val+"T00:00:00"); label=d.toLocaleDateString("ru-RU",{day:"2-digit",month:"long",year:"numeric"}); }
+      certDatePreview.textContent = "Дата: "+label;
+    }
+  }
+
+  function renderCertRouteOptions(){
+    if(!certRouteInput) return;
+    var season=document.documentElement.getAttribute("data-season")==="summer" ? "summer" : "winter";
+    var placeholder = season==="winter" ? "Выберите услугу" : "Выберите маршрут";
+    var prevValue=certRouteInput.value;
+    var options=routeOptionsBySeason[season].concat(["Другое"]);
+    certRouteInput.innerHTML = '<option value="" disabled'+(prevValue?"":" selected")+'>'+placeholder+'</option>'+
+      options.map(function(o){ return '<option'+(o===prevValue?' selected':'')+'>'+o+'</option>'; }).join("");
+    updateCertPreview();
+  }
+  renderCertRouteOptions();
+
+  [certNameInput,certRouteInput,certDateInput].forEach(function(el){
+    if(el){
+      el.addEventListener("input",updateCertPreview);
+      el.addEventListener("change",updateCertPreview);
+    }
+  });
+
+  var certPrint=document.getElementById("certPrint");
+  if(certPrint){
+    certPrint.addEventListener("click",function(){
+      document.documentElement.classList.add("print-cert");
+      window.print();
+    });
+    window.addEventListener("afterprint",function(){
+      document.documentElement.classList.remove("print-cert");
+    });
+  }
 
   /* ---------- gear readiness step (what client already has vs needs provided) ---------- */
   var gearItemsBySeason={
