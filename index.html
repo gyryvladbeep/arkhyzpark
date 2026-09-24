@@ -339,10 +339,11 @@
   .checklist-card[data-season-strip]{display:none;}
   :root[data-season="winter"] .checklist-card[data-season-strip="winter"]{display:block;}
   :root[data-season="summer"] .checklist-card[data-season-strip="summer"]{display:block;}
-  .lead span[data-season-strip],.note span[data-season-strip],h2 span[data-season-strip],.kicker span[data-season-strip],.intro span[data-season-strip],.btn span[data-season-strip],[data-nav] span[data-season-strip],label span[data-season-strip],p span[data-season-strip]{display:none;}
+  .lead span[data-season-strip],.note span[data-season-strip],h2 span[data-season-strip],h3 span[data-season-strip],.kicker span[data-season-strip],.intro span[data-season-strip],.btn span[data-season-strip],[data-nav] span[data-season-strip],label span[data-season-strip],p span[data-season-strip]{display:none;}
   :root[data-season="winter"] .lead span[data-season-strip="winter"],
   :root[data-season="winter"] .note span[data-season-strip="winter"],
   :root[data-season="winter"] h2 span[data-season-strip="winter"],
+  :root[data-season="winter"] h3 span[data-season-strip="winter"],
   :root[data-season="winter"] .kicker span[data-season-strip="winter"],
   :root[data-season="winter"] .intro span[data-season-strip="winter"],
   :root[data-season="winter"] .btn span[data-season-strip="winter"],
@@ -352,6 +353,7 @@
   :root[data-season="summer"] .lead span[data-season-strip="summer"],
   :root[data-season="summer"] .note span[data-season-strip="summer"],
   :root[data-season="summer"] h2 span[data-season-strip="summer"],
+  :root[data-season="summer"] h3 span[data-season-strip="summer"],
   :root[data-season="summer"] .kicker span[data-season-strip="summer"],
   :root[data-season="summer"] .intro span[data-season-strip="summer"],
   :root[data-season="summer"] .btn span[data-season-strip="summer"],
@@ -845,7 +847,7 @@
       <div class="wrap hero-inner">
         <div>
           <p class="eyebrow">АРХЫЗ · КАВКАЗ</p>
-          <h1>Горы Архыза — с инструктором, который отвечает за маршрут</h1>
+          <h1>Горы Архыза — с инструктором, который отвечает за группу</h1>
           <p class="lead"><span data-season-strip="winter">Зимой — обучение и сопровождение на лыжах и сноуборде, для детей и взрослых.</span><span data-season-strip="summer">Летом — походы, восхождения и экскурсии.</span> 9 лет сопровождаем группы в горах Архыза, все инструктора аттестованы и сертифицированы.</p>
           <div class="hero-cta">
             <button class="btn btn-primary" data-nav="booking"><span data-season-strip="winter">Забронировать инструктора</span><span data-season-strip="summer">Забронировать гида</span></button>
@@ -853,7 +855,7 @@
           </div>
         </div>
         <div class="stat-row">
-          <div class="stat"><b>9 лет</b><span>на маршрутах Архыза</span></div>
+          <div class="stat"><b>9 лет</b><span>в горах Архыза</span></div>
           <div class="stat"><b>A · B · C</b><span>категории инструкторов</span></div>
           <div class="stat"><b>100%</b><span>официально сертифицированы</span></div>
           <div class="stat"><b>2 гида</b><span>на группу от 10 человек</span></div>
@@ -863,7 +865,7 @@
 
     <section class="block wrap reveal">
       <p class="kicker">Как это работает</p>
-      <h2>От выбора инструктора до маршрута — четыре шага</h2>
+      <h2><span data-season-strip="winter">От выбора инструктора до трассы — четыре шага</span><span data-season-strip="summer">От выбора инструктора до маршрута — четыре шага</span></h2>
       <div class="process-grid">
         <div class="process-step">
           <div class="process-num">1</div>
@@ -878,11 +880,11 @@
         <div class="process-step">
           <div class="process-num">3</div>
           <h3>Подтверждение</h3>
-          <p>Инструктор свяжется с вами, уточнит детали маршрута, снаряжение и точку встречи.</p>
+          <p><span data-season-strip="winter">Инструктор свяжется с вами, уточнит детали занятия, снаряжение и точку встречи.</span><span data-season-strip="summer">Инструктор свяжется с вами, уточнит детали маршрута, снаряжение и точку встречи.</span></p>
         </div>
         <div class="process-step">
           <div class="process-num">4</div>
-          <h3>Маршрут</h3>
+          <h3><span data-season-strip="winter">На трассе</span><span data-season-strip="summer">Маршрут</span></h3>
           <p>Встречаетесь в оговоренном месте — дальше инструктор ведёт группу от старта до финиша.</p>
         </div>
       </div>
@@ -890,13 +892,13 @@
 
     <section class="block wrap reveal" id="travelJournal">
       <p class="kicker">Дневник путешественника</p>
-      <h2>Маршрут, который можно взять с собой — на бумаге</h2>
-      <p class="intro">К каждому маршруту можно скачать не просто карту, а мини-дневник: место под фото, свои заметки и отметки — заполняется руками уже в горах.</p>
+      <h2><span data-season-strip="winter">Катание, которое можно взять с собой — на бумаге</span><span data-season-strip="summer">Маршрут, который можно взять с собой — на бумаге</span></h2>
+      <p class="intro"><span data-season-strip="winter">К каждому катанию можно скачать не просто карту, а мини-дневник: место под фото, свои заметки и отметки — заполняется руками уже в горах.</span><span data-season-strip="summer">К каждому маршруту можно скачать не просто карту, а мини-дневник: место под фото, свои заметки и отметки — заполняется руками уже в горах.</span></p>
 
       <div class="journal-card">
         <div class="journal-head">
           <div>
-            <h3>Пример маршрута — горы Архыза</h3>
+            <h3>Пример — горы Архыза</h3>
             <p>Демонстрационная схема, чтобы показать формат дневника</p>
           </div>
           <span class="badge-diff medium">Средний</span>
@@ -927,7 +929,7 @@
         <div class="journal-fillins">
           <div class="journal-slot">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7l1.5-3h5L16 7"/><circle cx="12" cy="13.5" r="3.5"/></svg>
-            <span>Приклей сюда фото с маршрута</span>
+            <span>Приклей сюда фото с выезда</span>
           </div>
           <div class="journal-slot" data-season-strip="summer">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20c8 0 14-6 14-14 0-1 0-2-.5-3-6 0-11 4-13 9-1 2-1 5-.5 8z"/><path d="M6 18c3-3 6-6 11-11"/></svg>
@@ -992,7 +994,7 @@
         </div>
 
         <div class="journal-notes">
-          <p class="journal-label">Заметки с маршрута</p>
+          <p class="journal-label">Заметки с выезда</p>
           <div class="notes-lines"><span></span><span></span><span></span></div>
         </div>
 
@@ -1006,13 +1008,13 @@
         </div>
       </div>
 
-      <p class="note"><b>Пример.</b> Схема маршрута условная — под реальные маршруты заказчика сделаем настоящие карты и подставим точные точки.</p>
+      <p class="note"><b>Пример.</b> <span data-season-strip="winter">Карта — заглушка, вставим схему трасс, когда заказчик пришлёт файл.</span><span data-season-strip="summer">Схема маршрута условная — под реальные маршруты заказчика сделаем настоящие карты и подставим точные точки.</span></p>
     </section>
 
     <section class="block wrap reveal" id="certificateSection">
       <p class="kicker">Сувенир</p>
       <h2 style="font-size:1.5rem;margin-top:.3rem;">Именной сертификат участника</h2>
-      <p class="intro">Заполните поля и распечатайте на память — с названием маршрута и датой.</p>
+      <p class="intro">Заполните поля и распечатайте на память — с названием и датой.</p>
 
       <div class="cert-card" id="certCard">
         <div class="cert-inner">
@@ -1077,7 +1079,7 @@
     <section class="block wrap reveal">
       <div class="gallery-head">
         <div>
-          <p class="kicker">Фото и видео с маршрутов</p>
+          <p class="kicker">Фото и видео с выездов</p>
           <h2 style="font-size:1.5rem;margin-top:.3rem;">Как проходят выезды</h2>
         </div>
       </div>
@@ -1099,14 +1101,14 @@
 
     <section class="block wrap reveal">
       <p class="kicker">Фото от клиентов</p>
-      <h2 style="font-size:1.5rem;margin-top:.3rem;">Поделитесь своими кадрами с маршрута</h2>
+      <h2 style="font-size:1.5rem;margin-top:.3rem;">Поделитесь своими кадрами с выезда</h2>
       <p class="intro">Лучшие фото и видео от клиентов попадают в галерею сайта — с вашего согласия. Загрузки на сайте нет: просто пришлите материалы инструктору или в MAX компании.</p>
       <div class="ugc-wrap">
         <div class="checklist-card">
           <h3>Как прислать</h3>
           <ul>
             <li>Фото или видео — в MAX компании или инструктору лично</li>
-            <li>Короткая подпись: маршрут, сезон, инструктор (если помните)</li>
+            <li>Короткая подпись: направление, сезон, инструктор (если помните)</li>
             <li>Согласие на публикацию — достаточно одной фразы в сообщении</li>
           </ul>
         </div>
@@ -1129,7 +1131,7 @@
 
     <section class="block wrap reveal">
       <p class="kicker">Видео</p>
-      <h2 style="font-size:1.5rem;margin-top:.3rem;">Инструктора и маршруты в движении</h2>
+      <h2 style="font-size:1.5rem;margin-top:.3rem;">Инструктора в движении</h2>
       <div class="video-grid">
         <div class="video-card" data-season-strip="winter">
           <span class="example-tag">Пример</span>
@@ -1152,7 +1154,7 @@
           <span class="video-caption">Съёмка с маршрута</span>
         </div>
       </div>
-      <p class="note"><b>Заглушка.</b> Слоты готовы под реальные ролики — короткое интро от инструктора или кадры с маршрута. Пришлите видео, и мы встроим плеер.</p>
+      <p class="note"><b>Заглушка.</b> Слоты готовы под реальные ролики — короткое интро от инструктора или кадры с выезда. Пришлите видео, и мы встроим плеер.</p>
     </section>
 
     <section class="block wrap reveal">
@@ -1171,9 +1173,9 @@
       <h2 style="font-size:1.6rem;margin-top:.4rem;"><span data-season-strip="winter">Зима — лыжи и сноуборд</span><span data-season-strip="summer">Лето — походы и восхождения</span></h2>
       <p class="intro">«Архызпарк» — 9 лет на рынке, компанию создал Вячеслав Греков. Команда сертифицированных инструкторов категорий A, B, C и международного уровня круглый год сопровождает группы в горах Архыза.</p>
       <div class="value-grid" data-season-strip="winter">
-        <div class="value"><b>Лыжи и сноуборд</b><p>Для взрослых и детей — обучение и сопровождение на маршруте.</p></div>
+        <div class="value"><b>Лыжи и сноуборд</b><p>Для взрослых и детей — обучение и сопровождение на трассе.</p></div>
         <div class="value"><b>Детская горнолыжная школа</b><p>Индивидуальный подход к каждому начинающему, а не групповой стандарт.</p></div>
-        <div class="value"><b>Категории A · B · C</b><p>И специалисты международного уровня для сложных маршрутов.</p></div>
+        <div class="value"><b>Категории A · B · C</b><p>И специалисты международного уровня для сложных трасс.</p></div>
       </div>
       <div class="value-grid" data-season-strip="summer">
         <div class="value"><b>Походы и восхождения</b><p>От прогулочных маршрутов выходного дня до многодневных восхождений.</p></div>
@@ -1265,11 +1267,11 @@
         <div class="process-step">
           <div class="process-num">3</div>
           <h3>Снаряжение и точка встречи</h3>
-          <p>Проконсультирует по одежде и снаряжению под маршрут, назначит время и место сбора.</p>
+          <p><span data-season-strip="winter">Проконсультирует по одежде и снаряжению под занятие, назначит время и место сбора.</span><span data-season-strip="summer">Проконсультирует по одежде и снаряжению под маршрут, назначит время и место сбора.</span></p>
         </div>
         <div class="process-step">
           <div class="process-num">4</div>
-          <h3>Маршрут</h3>
+          <h3><span data-season-strip="winter">На трассе</span><span data-season-strip="summer">Маршрут</span></h3>
           <p>Встречаетесь в оговоренном месте — дальше инструктор ведёт группу от старта до финиша.</p>
         </div>
       </div>
@@ -1311,7 +1313,7 @@
           <p><span data-season-strip="winter">Встречаетесь с инструктором в оговоренном месте — дальше он ведёт группу по трассе.</span><span data-season-strip="summer">Встречаетесь с инструктором в оговоренном месте — дальше он ведёт группу по маршруту.</span></p>
         </div>
       </div>
-      <p class="note" style="margin-top:1.4rem;"><b>Ориентир.</b> Этапы общие для любого маршрута — точную программу согласует инструктор.</p>
+      <p class="note" style="margin-top:1.4rem;"><b>Ориентир.</b> Этапы общие — точную программу согласует инструктор.</p>
     </section>
   </section>
 
@@ -1321,7 +1323,7 @@
       <p class="kicker"><span data-season-strip="winter">Зима</span><span data-season-strip="summer">Лето</span></p>
       <h2><span data-season-strip="winter">Услуги</span><span data-season-strip="summer">Маршруты</span></h2>
       <p class="intro"><span data-season-strip="winter">Учебный склон, трассы с инструктором, фрирайд и обзорные точки — карточки ниже показывают структуру раздела. Реальные трассы, уровни и точки старта добавит заказчик.</span><span data-season-strip="summer">Походы, восхождения, экскурсии и заброски по маршруту — карточки ниже показывают структуру раздела. Реальные маршруты, расстояния и точки старта добавит заказчик.</span></p>
-      <p class="note"><b>Пример данных.</b> Названия и описания условные — под настоящие маршруты подставим точные факты.</p>
+      <p class="note"><b>Пример данных.</b> Названия и описания условные — под настоящие данные подставим точные факты.</p>
       <div class="grid">
         <div class="card" style="cursor:default;" data-season-strip="winter">
           <div class="card-photo">
@@ -1465,7 +1467,7 @@
         <div class="diff-item" style="padding:.55rem .8rem;align-items:center;"><span class="diff-dot medium"></span><b style="font-size:.82rem;">Средний</b></div>
         <div class="diff-item" style="padding:.55rem .8rem;align-items:center;"><span class="diff-dot hard"></span><b style="font-size:.82rem;">Сложный</b></div>
       </div>
-      <p class="note" style="margin-top:1.2rem;"><b>Ориентир.</b> Позиции на графике условные и иллюстративные — точные параметры конкретных маршрутов уточнит заказчик.</p>
+      <p class="note" style="margin-top:1.2rem;"><b>Ориентир.</b> Позиции на графике условные и иллюстративные — точные параметры уточнит заказчик.</p>
     </section>
   </section>
 
@@ -1474,11 +1476,11 @@
     <section class="block wrap reveal">
       <p class="kicker">О компании</p>
       <h2>ООО «Архызпарк»</h2>
-      <p class="intro">На рынке 9 лет. Основатель — Вячеслав Васильевич Греков. Служба объединяет сертифицированных инструкторов категорий A, B, C и специалистов международного уровня — для зимних и летних маршрутов в горах Архыза.</p>
+      <p class="intro">На рынке 9 лет. Основатель — Вячеслав Васильевич Греков. Служба объединяет сертифицированных инструкторов категорий A, B, C и специалистов международного уровня — для зимних трасс и летних маршрутов в горах Архыза.</p>
 
       <div class="value-grid">
-        <div class="value"><b>Полное сопровождение</b><p>Инструктор ведёт группу от точки старта до финиша и консультирует по снаряжению, одежде и питанию под конкретный маршрут.</p></div>
-        <div class="value"><b>Два гида на большую группу</b><p>Если в группе больше 10 человек — на маршрут выходят два инструктора. Это требование безопасности, а не опция.</p></div>
+        <div class="value"><b>Полное сопровождение</b><p>Инструктор ведёт группу от точки старта до финиша и консультирует по снаряжению, одежде и питанию под конкретный выход.</p></div>
+        <div class="value"><b>Два гида на большую группу</b><p>Если в группе больше 10 человек — с группой работают два инструктора. Это требование безопасности, а не опция.</p></div>
         <div class="value"><b>Регистрация в МЧС</b><p>Многодневные походы в обязательном порядке регистрируются в МЧС. О однодневных выходах сообщаем сотрудникам «Архызпарк» на месте.</p></div>
         <div class="value"><b>Два сезона — два направления</b><p>Зимой — лыжи и сноуборд для взрослых и детей. Летом — походы, восхождения, экскурсии и заброски по маршруту.</p></div>
       </div>
@@ -1525,9 +1527,9 @@
     <section class="block wrap reveal">
       <p class="kicker">Безопасность</p>
       <h2>Категории инструкторов и требования безопасности</h2>
-      <p class="intro">Каждый инструктор «Архызпарк» имеет официальную сертификацию — категория A, B, C или международный уровень для наиболее сложных маршрутов. Соответствие категории инструктора и сложности маршрута определяется индивидуально при подборе группы.</p>
+      <p class="intro">Каждый инструктор «Архызпарк» имеет официальную сертификацию — категория A, B, C или международный уровень для наиболее сложных направлений. Соответствие категории инструктора и уровня сложности определяется индивидуально при подборе группы.</p>
       <div class="value-grid">
-        <div class="value"><b>100% официальная сертификация</b><p>Ни один инструктор не выходит на маршрут без действующего подтверждённого допуска своей категории.</p></div>
+        <div class="value"><b>100% официальная сертификация</b><p>Ни один инструктор не начинает работу без действующего подтверждённого допуска своей категории.</p></div>
         <div class="value"><b>Два гида на группу от 10 человек</b><p>Требование безопасности, а не дополнительная услуга — действует и зимой, и летом.</p></div>
         <div class="value"><b>Регистрация в МЧС</b><p>Обязательна для многодневных походов. О однодневных выходах сообщаем сотрудникам «Архызпарк» на месте.</p></div>
       </div>
@@ -1536,21 +1538,21 @@
 
     <section class="block wrap reveal">
       <p class="kicker">Ориентир</p>
-      <h2>Как мы обозначаем сложность маршрутов</h2>
-      <p class="intro">Условная шкала, чтобы соотнести свой опыт с маршрутом перед бронированием — похожа на разметку трасс на горнолыжных курортах.</p>
+      <h2>Как мы обозначаем сложность</h2>
+      <p class="intro">Условная шкала, чтобы соотнести свой опыт перед бронированием — похожа на разметку трасс на горнолыжных курортах.</p>
       <div class="diff-legend">
         <div class="diff-item"><span class="diff-dot easy"></span><div><b>Лёгкий</b><p>Для новичков и семей с детьми — специальная подготовка не нужна.</p></div></div>
         <div class="diff-item"><span class="diff-dot medium"></span><div><b>Средний</b><p>Базовая физическая подготовка, желателен опыт активного отдыха.</p></div></div>
         <div class="diff-item"><span class="diff-dot hard"></span><div><b>Сложный</b><p>Для подготовленных участников — возможны технически насыщенные участки.</p></div></div>
-        <div class="diff-item"><span class="diff-dot expert"></span><div><b>Экспертный</b><p>Многодневные и высокогорные маршруты, сопровождают инструктора международного уровня.</p></div></div>
+        <div class="diff-item"><span class="diff-dot expert"></span><div><b>Экспертный</b><p>Многодневные и технически сложные направления, сопровождают инструктора международного уровня.</p></div></div>
       </div>
-      <p class="note"><b>Пример шкалы.</b> Точное распределение конкретных маршрутов по уровням сложности добавит заказчик.</p>
+      <p class="note"><b>Пример шкалы.</b> Точное распределение по уровням сложности добавит заказчик.</p>
     </section>
 
     <section class="block wrap reveal" id="gearChecklist">
       <p class="kicker">Подготовка</p>
       <h2>Чек-лист снаряжения</h2>
-      <p class="intro">Базовый список на выход — инструктор дополнит его под конкретный маршрут при подтверждении заявки. Показан чек-лист текущего сезона на сайте.</p>
+      <p class="intro">Базовый список на выход — инструктор дополнит его под конкретный выход при подтверждении заявки. Показан чек-лист текущего сезона на сайте.</p>
       <div class="checklist-wrap">
         <div class="checklist-card" data-season-strip="winter">
           <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="flex:none;"><path d="M12 2v20M4.2 6l15.6 12M19.8 6L4.2 18M8 3l4 3 4-3M8 21l4-3 4 3M2 9l4 3-4 3M22 9l-4 3 4 3"/></svg>Зима — лыжи и сноуборд</h3>
@@ -1578,7 +1580,7 @@
       </div>
       <div class="checklist-actions">
         <button class="btn btn-primary no-print" id="checklistPrint">Скачать / распечатать чек-лист</button>
-        <p class="note" style="margin:0;">Список общий и ориентировочный — точные требования зависят от маршрута.</p>
+        <p class="note" style="margin:0;">Список общий и ориентировочный — точные требования зависят от выхода.</p>
       </div>
     </section>
   </section>
@@ -1588,7 +1590,7 @@
     <section class="block wrap reveal">
       <p class="kicker">Журнал</p>
       <h2>Заметки о походах и трассах</h2>
-      <p class="intro">Короткие материалы от инструкторов — советы по подготовке, разборы маршрутов, частые вопросы новичков. Раздел наполняется постепенно.</p>
+      <p class="intro">Короткие материалы от инструкторов — советы по подготовке, разборы маршрутов и трасс, частые вопросы новичков. Раздел наполняется постепенно.</p>
       <p class="note"><b>Пример структуры.</b> Заголовки ниже показывают формат раздела — реальные статьи и даты публикаций добавит заказчик.</p>
       <div id="blogList"></div>
     </section>
@@ -1618,7 +1620,7 @@
 
     <div class="step active" id="stepDetail">
       <div class="tag-row" id="sheetTags" style="margin-top:.9rem;"></div>
-      <p style="margin-top:1rem;color:var(--text-muted);">Здесь будет подробное описание опыта инструктора, специализации и маршрутов, которые он ведёт — заполняется заказчиком.</p>
+      <p style="margin-top:1rem;color:var(--text-muted);">Здесь будет подробное описание опыта инструктора, специализации и направлений, которые он ведёт — заполняется заказчиком.</p>
       <button class="btn btn-primary btn-block" id="toBookingStep" style="margin-top:1.4rem;">Забронировать этого инструктора</button>
     </div>
 
@@ -2284,8 +2286,8 @@
 
   /* ---------- FAQ ---------- */
   var faqData=[
-    {season:"all",q:"Нужна ли специальная физическая подготовка?",a:"Для большинства маршрутов участники уже подготовлены — инструктор сопровождает группу от старта до финиша и консультирует по снаряжению, одежде и питанию перед выходом."},
-    {season:"all",q:"Что если в группе больше 10 человек?",a:"На маршрут выходят два инструктора — это требование безопасности, а не дополнительная услуга."},
+    {season:"all",q:"Нужна ли специальная физическая подготовка?",a:"Для большинства программ участники уже подготовлены — инструктор сопровождает группу от старта до финиша и консультирует по снаряжению, одежде и питанию перед выходом."},
+    {season:"all",q:"Что если в группе больше 10 человек?",a:"С группой работают два инструктора — это требование безопасности, а не дополнительная услуга."},
     {season:"all",q:"Как оплатить бронирование?",a:"Раздел в разработке — способы оплаты и предоплаты будут описаны здесь после согласования с заказчиком."},
     {season:"winter",q:"С какого возраста можно записать ребёнка в горнолыжную школу?",a:"Работаем индивидуально с каждым начинающим. Точные возрастные рамки уточняются у заказчика — пока отвечаем на этот вопрос через консультацию с инструктором."},
     {season:"winter",q:"Нужно ли своё снаряжение, или можно взять в прокат?",a:"Начать можно и без своего снаряжения — на консультации перед стартом инструктор подскажет, что понадобится, и подскажет с прокатом."},
@@ -2330,7 +2332,7 @@
     {season:"winter",tag:"Подготовка",q:"Пример статьи: как подготовиться к первому спуску",a:"Здесь будет текст статьи от инструктора — добавим, когда заказчик пришлёт материалы. Формат: советы по снаряжению, одежде и настрою перед первым занятием."},
     {season:"summer",tag:"Подготовка",q:"Пример статьи: как подготовиться к первому походу",a:"Здесь будет текст статьи от инструктора о сборах в первый поход — снаряжение, одежда и настрой перед выходом. Материал добавит заказчик."},
     {season:"summer",tag:"Маршруты",q:"Пример статьи: разбор одного из летних маршрутов",a:"Здесь будет репортаж с реального маршрута — протяжённость, набор высоты, что взять с собой. Наполнит заказчик реальными материалами и фото."},
-    {season:"winter",tag:"Маршруты",q:"Пример статьи: разбор одной из горнолыжных трасс",a:"Здесь будет разбор реальной трассы — уровень сложности, рельеф, на что обратить внимание. Наполнит заказчик реальными материалами и фото."},
+    {season:"winter",tag:"Трассы",q:"Пример статьи: разбор одной из горнолыжных трасс",a:"Здесь будет разбор реальной трассы — уровень сложности, рельеф, на что обратить внимание. Наполнит заказчик реальными материалами и фото."},
     {season:"winter",tag:"Вопросы новичков",q:"Пример статьи: частые ошибки новичков на трассе",a:"Здесь будет разбор типичных ситуаций от инструкторов — что учесть перед первым выездом. Материал добавит заказчик."},
     {season:"summer",tag:"Вопросы новичков",q:"Пример статьи: частые ошибки новичков в первом походе",a:"Здесь будет разбор типичных ситуаций от инструкторов в походах — что учесть перед первым выходом. Материал добавит заказчик."}
   ];
