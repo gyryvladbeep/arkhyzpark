@@ -582,6 +582,28 @@
   }
   .badge-eco svg{width:12px;height:12px;flex:none;}
 
+  /* ---------- pricing (season tariffs) ---------- */
+  .price-tabs{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.6rem;}
+  .price-tabs input{position:absolute;opacity:0;pointer-events:none;}
+  .price-tabs label{
+    border:1px solid var(--border);background:var(--surface);
+    padding:.5rem .95rem;border-radius:999px;font-size:.85rem;cursor:pointer;
+    color:var(--text-muted);transition:all .18s var(--ease);
+  }
+  .price-tabs label:hover{border-color:var(--accent);color:var(--text);}
+  .price-tabs input:checked + label{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600;}
+  .price-panels{margin-top:1.4rem;}
+  .price-panel{display:none;}
+  #priceIndividual:checked ~ .price-panels [data-panel="individual"],
+  #pricePair:checked ~ .price-panels [data-panel="pair"],
+  #priceTeam:checked ~ .price-panels [data-panel="team"]{display:block;}
+  .price-table-wrap{overflow-x:auto;}
+  .price-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius-m);overflow:hidden;font-size:.88rem;}
+  .price-table th,.price-table td{padding:.7rem .9rem;text-align:left;border-bottom:1px solid var(--border-soft);white-space:nowrap;}
+  .price-table th{background:var(--accent-2-tint);color:var(--text);font-weight:600;font-size:.78rem;}
+  .price-table tr:last-child td{border-bottom:none;}
+  .price-table td:not(:first-child),.price-table th:not(:first-child){text-align:center;}
+
   /* ---------- quiz ---------- */
   .quiz{max-width:640px;margin-top:1.8rem;background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--radius-l);padding:1.8rem clamp(1.2rem,4vw,2.4rem);}
   .quiz-step{display:none;}
@@ -1096,7 +1118,7 @@
         <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c0-3 2.5-5 6-5s6 2 6 5M13 20c.5-2.5 2.3-4 5-4s4.5 1.5 4 4"/></svg><span>Групповые походы</span></div>
         <div class="tile" role="listitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg><span>Заброски и экскурсии</span></div>
       </div>
-      <p class="note"><b>Заглушка.</b> Сюда встанет карусель реальных фото и видео с клиентами — пришлите материалы, и мы соберём галерею. Набор плиток меняется вместе с сезонной темой сайта.</p>
+      <p class="note"><b>Заглушка.</b> На действующем сайте компании уже больше 200 фото по категориям «Наши гости», «Инструкторы», «События», «Природа Архыза» — соберём такую же галерею здесь, как только заказчик пришлёт файлы. Набор плиток меняется вместе с сезонной темой сайта.</p>
     </section>
 
     <section class="block wrap reveal">
@@ -1154,7 +1176,7 @@
           <span class="video-caption">Съёмка с маршрута</span>
         </div>
       </div>
-      <p class="note"><b>Заглушка.</b> Слоты готовы под реальные ролики — короткое интро от инструктора или кадры с выезда. Пришлите видео, и мы встроим плеер.</p>
+      <p class="note"><b>Заглушка.</b> На действующем сайте компании уже около 40 видео с гостями. Слоты здесь готовы под такие же ролики — короткое интро от инструктора или кадры с выезда. Пришлите видео, и мы встроим плеер.</p>
     </section>
 
     <section class="block wrap reveal">
@@ -1246,7 +1268,7 @@
         <button class="chip" data-filter="snowboard" aria-pressed="false" data-season-strip="winter">Сноуборд</button>
         <button class="chip" data-filter="hiking" aria-pressed="false" data-season-strip="summer">Походы</button>
       </div>
-      <p class="note"><b>Пример данных.</b> Карточки ниже показывают структуру раздела — реальные инструктора, фото, описания и отзывы добавит заказчик.</p>
+      <p class="note"><span data-season-strip="winter"><b>Имена, категории и специализации — реальные</b>, перенесены с действующего официального сайта компании. Фото, подробные описания и отзывы добавит заказчик.</span><span data-season-strip="summer"><b>Пример данных.</b> Карточки ниже показывают структуру раздела — реальные гиды, фото, описания и отзывы добавит заказчик.</span></p>
       <div class="grid" id="instructorGrid"></div>
     </section>
 
@@ -1455,6 +1477,68 @@
       <p class="note" style="margin-top:1rem;"><b>«Быстрая заявка»</b> на карточке готовит текст сообщения и копирует его в буфер — вставьте в MAX или SMS. Прямые ссылки на мессенджеры подключим, когда заказчик пришлёт контакты.</p>
     </section>
 
+    <section class="block wrap reveal" data-season-strip="winter">
+      <p class="kicker">Цены</p>
+      <h2 style="font-size:1.5rem;margin-top:.3rem;">Тарифы на сезон 2025/2026</h2>
+      <p class="intro">Стоимость зависит от того, на сколько человек рассчитано занятие и на какие даты сезона оно приходится. Ниже — полный тариф.</p>
+
+      <div class="price-tabs" role="tablist">
+        <input type="radio" name="priceMode" id="priceIndividual" checked>
+        <label for="priceIndividual">Индивидуально</label>
+        <input type="radio" name="priceMode" id="pricePair">
+        <label for="pricePair">Пара</label>
+        <input type="radio" name="priceMode" id="priceTeam">
+        <label for="priceTeam">Группа 3–5 чел.</label>
+      </div>
+
+      <div class="price-panels">
+        <div class="price-panel" data-panel="individual">
+          <div class="price-table-wrap">
+            <table class="price-table">
+              <thead><tr><th>Формат</th><th>Низкий сезон</th><th>Средний сезон</th><th>Высокий сезон</th></tr></thead>
+              <tbody>
+                <tr><td>1 час</td><td>4 200 ₽</td><td>4 500 ₽</td><td>5 500 ₽</td></tr>
+                <tr><td>2 часа</td><td>7 500 ₽</td><td>8 000 ₽</td><td>9 500 ₽</td></tr>
+                <tr><td>3 дня × 2 часа</td><td>20 100 ₽</td><td>21 600 ₽</td><td>25 050 ₽</td></tr>
+                <tr><td>5 дней × 2 часа</td><td>35 000 ₽</td><td>36 000 ₽</td><td>44 000 ₽</td></tr>
+                <tr><td>Вечерний тариф · 1 час</td><td>3 600 ₽</td><td>3 800 ₽</td><td>4 700 ₽</td></tr>
+                <tr><td>Вечерний тариф · 2 часа</td><td>6 400 ₽</td><td>6 800 ₽</td><td>8 100 ₽</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="price-panel" data-panel="pair">
+          <div class="price-table-wrap">
+            <table class="price-table">
+              <thead><tr><th>Формат (за двоих)</th><th>Низкий сезон</th><th>Средний сезон</th><th>Высокий сезон</th></tr></thead>
+              <tbody>
+                <tr><td>1 час</td><td>6 200 ₽</td><td>7 000 ₽</td><td>7 500 ₽</td></tr>
+                <tr><td>2 часа</td><td>10 200 ₽</td><td>11 000 ₽</td><td>13 000 ₽</td></tr>
+                <tr><td>3 дня × 2 часа</td><td>26 100 ₽</td><td>28 200 ₽</td><td>33 000 ₽</td></tr>
+                <tr><td>5 дней × 2 часа</td><td>38 300 ₽</td><td>41 300 ₽</td><td>48 800 ₽</td></tr>
+                <tr><td>Вечерний тариф · 1 час</td><td>5 300 ₽</td><td>6 000 ₽</td><td>6 400 ₽</td></tr>
+                <tr><td>Вечерний тариф · 2 часа</td><td>8 700 ₽</td><td>9 400 ₽</td><td>11 100 ₽</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="price-panel" data-panel="team">
+          <div class="price-table-wrap">
+            <table class="price-table">
+              <thead><tr><th>Формат (за человека)</th><th>Низкий сезон</th><th>Средний сезон</th><th>Высокий сезон</th></tr></thead>
+              <tbody>
+                <tr><td>От 2 часов</td><td>2 500 ₽</td><td>уточняется</td><td>2 700 ₽</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note" style="margin-top:1rem;">Групповой тариф — для компаний от 3 до 5 человек в одной группе с одним инструктором.</p>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:1.2rem;"><b>Даты сезона 2025/2026:</b> низкий — 20.11.25–25.12.25; средний — 12.01.26–31.01.26 и 16.03.26–31.03.26; высокий — 26.12.25–11.01.26 и 01.02.26–15.03.26.</p>
+      <p class="note"><b>Источник.</b> Цены перенесены с действующего официального сайта компании на сезон 2025/2026 и требуют подтверждения перед публикацией финальной версии.</p>
+    </section>
+
     <section class="block wrap reveal">
       <p class="kicker">Сравнение</p>
       <h2 style="font-size:1.5rem;margin-top:.3rem;"><span data-season-strip="winter">Сравнение услуг</span><span data-season-strip="summer">Сравнение маршрутов</span></h2>
@@ -1476,7 +1560,7 @@
     <section class="block wrap reveal">
       <p class="kicker">О компании</p>
       <h2>ООО «Архызпарк»</h2>
-      <p class="intro">На рынке 9 лет. Основатель — Вячеслав Васильевич Греков. Служба объединяет сертифицированных инструкторов категорий A, B, C и специалистов международного уровня — для зимних трасс и летних маршрутов в горах Архыза.</p>
+      <p class="intro">На рынке с 2017 года (9 лет). Директор — Вячеслав Васильевич Греков. Служба объединяет сертифицированных инструкторов категорий A, B, C и специалистов международного уровня — для зимних трасс и летних маршрутов в горах Архыза.</p>
 
       <div class="value-grid">
         <div class="value"><b>Полное сопровождение</b><p>Инструктор ведёт группу от точки старта до финиша и консультирует по снаряжению, одежде и питанию под конкретный выход.</p></div>
@@ -1485,7 +1569,19 @@
         <div class="value"><b>Два сезона — два направления</b><p>Зимой — лыжи и сноуборд для взрослых и детей. Летом — походы, восхождения, экскурсии и заброски по маршруту.</p></div>
       </div>
 
-      <p class="note"><b>Дополнить позже:</b> логотип уже используется в шапке и футере; фирменные фото, подробная история компании и точный список сертификатов инструкторов будут добавлены по мере поступления материалов от заказчика.</p>
+      <p class="note"><b>Реквизиты.</b> ООО «Архызпарк» · ИНН 0912004972 · ОГРН 1170917002420 (зарегистрировано 28.08.2017) · директор Греков Вячеслав Васильевич · юр. адрес: 369144, Карачаево-Черкесская Республика, Зеленчукский район, ст. Зеленчукская, ул. Победы, д. 344 · факт. адрес: п. Романтик, аул Архыз, ул. Горная, 1.</p>
+      <p class="note"><b>Дополнить позже:</b> фирменные фото и подробная история компании будут добавлены по мере поступления материалов от заказчика.</p>
+    </section>
+
+    <section class="block wrap reveal">
+      <p class="kicker">Партнёры</p>
+      <h2 style="font-size:1.5rem;margin-top:.3rem;">С кем мы работаем</h2>
+      <p class="intro">Проверенные партнёры для путешественников — если своей одежды или снаряжения не хватает.</p>
+      <div class="value-grid">
+        <div class="value"><b>Buono</b><p>Одежда для путешествий и активного отдыха в горах.</p></div>
+        <div class="value"><b>GetSki</b><p>Прокат горных лыж и сноубордов на курорте.</p></div>
+      </div>
+      <p class="note"><b>Дополнить позже:</b> логотипы и прямые ссылки на партнёров добавим, когда заказчик пришлёт актуальные контакты и материалы.</p>
     </section>
 
     <section class="block wrap reveal">
@@ -1512,16 +1608,19 @@
     <section class="block wrap reveal" data-season-strip="winter">
       <div class="highlight-box" style="margin-top:0;">
         <p class="kicker">Детская горнолыжная школа</p>
-        <h2 style="font-size:1.5rem;margin-top:.3rem;">Персональный подход к каждому юному спортсмену</h2>
-        <p style="max-width:70ch;">Отдельное направление службы — индивидуальный, а не групповой темп занятий для каждого маленького начинающего. Работают инструкторы, отдельно отмеченные как «работает с детьми» — их можно найти фильтром в разделе бронирования.</p>
+        <h2 style="font-size:1.5rem;margin-top:.3rem;">Пять уровней — от первого снега до красных трасс</h2>
+        <p style="max-width:70ch;">Обучение в мини-группах 3–5 детей одного возраста — так прогресс идёт быстрее, чем в одиночку или в разновозрастной группе. Занятие длится 3 часа, две смены в день: 9:30–12:30 и 13:00–16:00. Направление ведёт Татьяна Грекова.</p>
         <div class="value-grid" style="margin-top:1.4rem;">
-          <div class="value"><b>Индивидуальные занятия</b><p>Темп и программа подбираются под ребёнка, а не под усреднённый групповой стандарт.</p></div>
-          <div class="value"><b>Отмеченные инструкторы</b><p>В карточке инструктора всегда видно, работает ли он с детьми — сомнений при выборе не остаётся.</p></div>
-          <div class="value"><b>Консультация перед стартом</b><p>Инструктор подскажет родителям, какое снаряжение и одежда нужны ребёнку под конкретный уровень.</p></div>
+          <div class="value"><b>Пингвинята</b><p>Дошкольники — закрытый детский склон, первое знакомство со снегом.</p></div>
+          <div class="value"><b>Медвежата</b><p>Начинающие — закрытый склон, первые самостоятельные повороты.</p></div>
+          <div class="value"><b>Еноты</b><p>Зелёные трассы — уверенное катание с подъёмником.</p></div>
+          <div class="value"><b>Лисы</b><p>Зелёные и синие трассы — знакомство с карвингом.</p></div>
+          <div class="value"><b>Рыси</b><p>Зелёные, синие и красные трассы — продвинутая техника поворота.</p></div>
         </div>
+        <p class="note" style="margin-top:1.4rem;"><b>Архызёнок 2026.</b> В закрытии сезона участвовали 30 детей из восьми групп — шесть на лыжах, две на сноуборде. Каждый получил дневник горнолыжника, шоколадную медаль и наклейку «Рысь».</p>
         <button class="btn btn-primary" id="kidsCta" style="margin-top:1.5rem;">Смотреть инструкторов для детей</button>
       </div>
-      <p class="note"><b>Дополнить позже:</b> точные возрастные группы, длительность занятий и стоимость добавит заказчик.</p>
+      <p class="note"><b>Стоимость.</b> 7 500 ₽ за трёхчасовое занятие (без учёта ски-пасса и проката снаряжения) — точные условия уточняйте у инструктора при бронировании.</p>
     </section>
 
     <section class="block wrap reveal">
@@ -1534,6 +1633,19 @@
         <div class="value"><b>Регистрация в МЧС</b><p>Обязательна для многодневных походов. О однодневных выходах сообщаем сотрудникам «Архызпарк» на месте.</p></div>
       </div>
       <p class="note"><b>Дополнить позже:</b> точные различия между категориями A, B, C и перечень международных сертификатов конкретных инструкторов добавит заказчик.</p>
+    </section>
+
+    <section class="block wrap reveal" data-season-strip="winter">
+      <p class="kicker">Методика</p>
+      <h2>Научные методики обучения</h2>
+      <p class="intro">Работаем по методикам с научным обоснованием — на исследованиях и публикациях тренера-преподавателя Александра Ривлина, инструктора высшей категории УЦ ФГССР с многолетним спортивным, тренерским и научным опытом.</p>
+      <div class="value-grid">
+        <div class="value"><b>Математика</b><p>Математическое моделирование вариантов поворота — расчёт траектории, нагрузки и скорости.</p></div>
+        <div class="value"><b>Механика</b><p>Физическая модель поворота — стойка как механическая система.</p></div>
+        <div class="value"><b>Биомеханика</b><p>Какие группы мышц включать, чтобы выполнять поворот эффективно и с минимальными затратами энергии.</p></div>
+        <div class="value"><b>Методики обучения</b><p>Адаптация под разный возраст и уровень — от первого спуска до спортсменов.</p></div>
+      </div>
+      <p class="note"><b>Инструкторы обучены этим методикам</b> и применяют их на практике — вы научитесь управлять лыжами эффективно, с правильными движениями и минимальными энергозатратами. Для спортсменов высокого уровня необходимо непосредственное участие самого Александра Ривлина.</p>
     </section>
 
     <section class="block wrap reveal">
@@ -1612,7 +1724,7 @@
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
     <div class="sheet-head">
       <div>
-        <span class="example-tag" style="position:static;display:inline-block;margin-bottom:.5rem;">Пример</span>
+        <span class="example-tag" id="sheetExampleTag" style="position:static;display:inline-block;margin-bottom:.5rem;">Пример</span>
         <h3 id="sheetTitle" style="font-size:1.3rem;"></h3>
       </div>
       <button class="sheet-close" id="sheetClose" aria-label="Закрыть">&times;</button>
@@ -1676,12 +1788,16 @@
     <div class="foot-grid">
       <div>
         <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEA2ADYAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/+EAgEV4aWYAAE1NACoAAAAIAAUBEgADAAAAAQABAAABGgAFAAAAAQAAAEoBGwAFAAAAAQAAAFIBKAADAAAAAQACAACHaQAEAAAAAQAAAFoAAAAAAAAA2AAAAAEAAADYAAAAAQACoAIABAAAAAEAAARloAMABAAAAAEAAAObAAAAAP/iAihJQ0NfUFJPRklMRQABAQAAAhhhcHBsBAAAAG1udHJSR0IgWFlaIAfmAAEAAQAAAAAAAGFjc3BBUFBMAAAAAEFQUEwAAAAAAAAAAAAAAAAAAAAAAAD21gABAAAAANMtYXBwbOz9o444hUfDbbS9T3raGC8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACmRlc2MAAAD8AAAAMGNwcnQAAAEsAAAAUHd0cHQAAAF8AAAAFHJYWVoAAAGQAAAAFGdYWVoAAAGkAAAAFGJYWVoAAAG4AAAAFHJUUkMAAAHMAAAAIGNoYWQAAAHsAAAALGJUUkMAAAHMAAAAIGdUUkMAAAHMAAAAIG1sdWMAAAAAAAAAAQAAAAxlblVTAAAAFAAAABwARABpAHMAcABsAGEAeQAgAFAAM21sdWMAAAAAAAAAAQAAAAxlblVTAAAANAAAABwAQwBvAHAAeQByAGkAZwBoAHQAIABBAHAAcABsAGUAIABJAG4AYwAuACwAIAAyADAAMgAyWFlaIAAAAAAAAPbVAAEAAAAA0yxYWVogAAAAAAAAg98AAD2/////u1hZWiAAAAAAAABKvwAAsTcAAAq5WFlaIAAAAAAAACg4AAARCwAAyLlwYXJhAAAAAAADAAAAAmZmAADypwAADVkAABPQAAAKW3NmMzIAAAAAAAEMQgAABd7///MmAAAHkwAA/ZD///ui///9owAAA9wAAMBu/9sAQwAGBAQFBAQGBQUFBgYGBwkOCQkICAkSDQ0KDhUSFhYVEhQUFxohHBcYHxkUFB0nHR8iIyUlJRYcKSwoJCshJCUk/9sAQwEGBgYJCAkRCQkRJBgUGCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQk/8AAEQgAYgB4AwERAAIRAQMRAf/EABwAAAEFAQEBAAAAAAAAAAAAAAMCBAUGBwEIAP/EADgQAAEDAwMCAwQKAQQDAAAAAAECAwQABREGEiEHMRNBURQiYYEVFiMyQlJxkcHRCBczobFDYnL/xAAaAQACAwEBAAAAAAAAAAAAAAAAAQIDBQQG/8QAMREAAgIBAgUCBQMDBQAAAAAAAAECAxEEIRITMUFRFGEFIoGRoXHB8CMk0RUWMkKx/9oADAMBAAIRAxEAPwDE0CpAGSmkIIEimB3bQAkpoAQRQAnbQBzYfQ0gEKTQAgppgJ20AJxQBw0AJNAHM0APEUAGSaAFg0Ad3UACkSWozSnXnEoQO5NAFfmarSSUxWjj86x/FLIDdx27yLcq5qRMMFLgaLyU4bCj5ZFS5c+Hjxt5IcyHFwZ3HBsNyGmBqXxU+wl7wMeKfE3Zx29PnVvpp8rnduhX6mHN5PfGRsly7xrci5+HMEJbhaS8pOW1KHcZNVcuSjx428lvMi5cGdwsXU6chMls4/OgfxUSRMMvtSGw40sLQfMUwOmgBBoASaAOUAO0GmIIk0YAVmngAE2c1AjqedPA4AHdR9BSArsG3XrWtxWxAjqkONtqc8NJAShI/X14HxJFTppndLhgssruvhTHim8In9JaegStGaslT4IVNgIT4SnNwUyrBzxnvkeddmmojKi2U1ujj1N8431Ri9n+QGhNcnT6V2u7smZYJhKHWlp3BvPdSR5+WR8+9R0er5XyWLMGS1mj5v8AUreJo1Bej7ANFJgG5D6CTJ9v8fd3ZyTt3fPGe/wzWy9LVyOHi+TOfoYy1VvqOPh+fGPqZbrvXKtRbLba2TDsMMhDLCE7QvGcKUP3wPL9c1i6zWc35ILEF0NrR6PlZnN5m+rHGsdOwoumdIvW2AEzLhHJdLYUVPLwjHHrknt61PVURjTU4Ldr7kNLfKVtqm9k/t1K/cLbeNG3IRp7CmHVIS4WyQUrSfiPmPgQa47aZ0y4ZrDO2m6F0eKDyiZiS25rAeaPB4I80n0qssCYoA5imI5ikMdIFMQRKaYC9tAFO1BOMyVhJ+ybylPx9TUGxovGmen0y3LhXq36us8SQW0uhKnOQFAEpUM8+hFa+n0Uo4thYkzI1GtjLiqnW2jQ7xb2Lrp2+NW72B+73CIA+mI8CHVpGAe/xxk/AGtW2CnVNQw5Nb4MqqbhbBzyop7ZKXoHTVsvmgZ0C9ARVIuSm23ljath0pQkd/MnAIPf9qztHRC3TShbtv8AZ7GjrdROrUxlVvt91uSx0Bd1dPW9LZbEgXHJdz7nhbid/rj4d81f6Kz03I75/Bz+tr9Tz+2Pz4IbqDpq22fQ1qt9hSJXiXHYp1v3lyHQlST27nIIAHaufW6eFenjCrff7s6NDqJ2aiUrdtvsi82yDHtdisyJyrcxeLfBDbIlvABpakgE4znyxkehANadcFCuClhSS2yZtk5Tsnw5cW98dzN9T9P5cz2+9z9XWiZIS2p5SUue8vaMhKRnj0ArI1GhlLitnYmzX0+tjHhqhW0ikWOX7K+dx+zWQlXw+NZKNctRbqQhOygBJRQA4bFAg6EUCG12eMW3vLBwojan9TxSY0VzT9tt12vkSFdJxgxHVFKngM4PkOeBk8ZPAqzTwhOxRm8Ir1E5wrcoLLD6m0dJ0hekQ7p4hhrVluSyjPiN55IB/EPNJP8AdW6jSyos4Z9PJVp9VG+vih18F9sfTu3WiPH1RbdaKYjpAWmV7MAjB4KVDd8iDWnToYVpXwtwvODMu105t0Tqy/GSx6lFv1lpa727Tcy3zbg74ch1DCwC4pJTzj1ITgfIE1138GoplClpy67HJp+PT3RncmorK3IBy+X9fSNtXjyTc1y/o8nb9sU7inZ67uMZ71yu630XX5s49zqVNXreny4z7Fh0+q3aO0zZ7bqGdboVyjtrdaS+sEtKUVcgfAKwfmAa6qODT0xhc0pI5L+PUWznSm4sq996dW24RZGqLnrNb7Dg3qk+yghXkAgbvkAK47tDCUXfO3K84O2nXTi1RCrD8ZKNpTRkrWF4XGt+9EJtWXZLqQPDRnjIHG4jyz/wM1m6bSy1E+GHTyaWp1UdPDin18Da+QLfbLzMh2ucZ0Npe1D5GN3qPQ47ZHBqq+EIWOMHlFtE5zrUprDJ+1ve029pZ5UBsV+o4/qq0WhlDFMQNVAx+xHJ8qWSI8biHHalkWSC1ggswmU/md/6BoHEHoEWSTcVW652CVepUtSERGmCAQRnd3Unvx+1dGnv09SlLURyjk13NUeKuail1yaQzdLbqK3ybH9S7rKi2t1LDrLzjQ9nWMgJ3KcBzwRwe3Fd1nxjRctQnF47GO6bKpK3mpOX67/gVbJ8HT++2wdD3qMiYt5txkltSFKaTlwK3OEJwk5OcZGO4oq+MaGuLUE8P9/qFlVlvzytTxjz36diCav+jtMXiGpnSFzhXB5Db0cocTlaHB7pH2mMKB7Gir4hoovjrg9v55Oh0am6DTsTXf6fQuJ1Q+G5Lv1Sup9lcdU6lKo5WhbeQs7Q5uyMHkCrf9waTbZ7nB6TdLmLfHnv07EFeItkktP6huug7o8nwkynX3H21HwyBtUUh3ITgjjGK5pfFfh9k/mi23/PJ1Vc6OKoWrx0f+Dt3vlov6bHGuWjLy+i4jNsaJQhLo4HugOAdsd/I1bb8X0VqanFtR/H5FVRbVxuFqWOv8wOly4VntK7ONEXePb3m3nVttONbVpbTucJWlzOQnuCc4+FKHxnQ8DrjF4/yQ5dlk+ZzU5LHnv07GZ66jWxh22u2uwybMzJi+OEPqBLyVH3VgblEDHriuC+/T2v+3WMbP8AU2dE7GpKyfE08bCdLJLkB8fld/7FUI7WPnRtzUgGylUAWaHHBxUCpsl2oiSntUckclU6hRNttYdA4Q9g/MH+qaJ19SE0TqW26TmzblNjSZMn2RbERDKgjatfuqUV90kIJwQDyao1FUrEop7Z3KdXRO6KhF4Wd/oWa4dSrFdGromJp92dNvLkJxUKUkra8dtKkKwUKClE5Tjjkk5FUQ0ticVxdM9Pc5K9DbFxTlhRzuuuH0CyeoiYDd+sup7fc4tyvLzybshtHhGEQgIaS0gq57DfuxlPHNEtJJSTj/16e/nP7A9BJSjKtrEMYz333z+x9I6oabetTTDrM2S43b40RDC4LAS062UZeS7nxPwnCe3NRWlsUs+7fV/bHQjHQ2qbaaW7fV9HnbHQctaptEdV61eu3Xj6Pu0uY0l1VqaAUtxBAbTK37kHaQSB8e/NN6a3gjHxju+3sN6S5whXt8uO77e2MMgndf2SVOuinWpyGJ1ijWrcltJUlaPCCzjd2whWPlU1p5pLHZt/+li0lijHGMqTf3yWm29SrXqnUNuh27Tt6dfhXRmTbWIoD7i2kI2KQEcbPcSlWASMgnNVLRWJNJrdNM5/9OtjFriT4k0/16/XcrVr6rNW2W/HcskS3wmm5pbYjslRVIdb2BTocUcjgAjt34qyekbXXL2+yL7Ph7ks8Tb26+E87YK7rHUETVF4F4joeaekR2RKaWAENvJSEkN4P3OAQOMZxXRRW648DOvS0yphy32bx+nv7kzouKTZ5LxHC38D5JH91ei9hpiNpNMER66BlphvgY5qJU0S7MpO3vUcEcEPqhoXK0SY6eV7d6P/AKHIpolHZmVFh2U+yxHacdedUEIbQkqUtROAABySfSmXHpzphonRnQCPD1T1NnMNanlsreg2/aXFREJSScAf+U/d3HABO0HOTUsEcknru19Pf8nICZej7kxF1tHhpkJjvp8NbyMkFl3yJSR94E7cjPumjAZMi6VdAbnqi8z5GrUu6f09Y3FJucmT9kQpHKm0k8Zx3V2AOecgESDJ6Re6gdGZ7z/SJ123JtTMPaDlKYYIBJQl3P8AuAe9u9fMqyKNw2PNPUX/AB81DpjVECFp1l2/2i9LH0VNjgKDoUMhKyOAQnnd90gbvUBYBM2fRv8Apr/i/b5Dd/uTdx1q5GQ7KbitlbiUqUMMtE4CR+I5IKgM9sCmBB9WOnWketse5ay6VTo829Q8KuVvZSUKlAp3b0pIB8Ty9FEEfeHJgEzzM02tlTjbiFIWhW1SVDBBHcEetRJGn2iMLZYYsZQw5t8RY/8AZXJ/gfKmiJHTFgk0wRHLNMZJsStvnUSOB6iecd6WCOAbs0nzp4GkUm9tP2q5NToTjjBDnitONKKVNLBzwRyCDyKOhNbjbUmp7zq67O3e/XB+4TngAt508kAYAAHAAHkKQJYNK6AdLrtqK8p1hIub2ndPWNftEi7BfhnKeShtR4zj7xPAB5ySAWhMnusvVzUfW67/AFb0fBnK0407hIQgpM1QP+46eyUDySe3c84AhZbCtZkyuy6Fa4rHgsEnpIhXStOlW1RjdG0h8SNowp/cVFO7GdvJT+mDWGtZ/X5nb9jzcfiP91zn/wAf2Irol1lvvSScNH65jz49gcWUNvOIO63rP4kHspsnkgZx3HmDuV2RmsxeT0ldsLFxQeSk9dOlN60NflXlye9fbJeHDIiXgr8QvFXvbXFDjfjnPZQ5HmBN+SxeCiaa1XfNH3H6SsFzk26YW1NF1hWCUKGCD6/wQCOQKE8DaHOmoa7jPVKklTjaF+I4pZyXFd8E+eTyaALlJmlYPNMRGPObiaAGxNAwqFkUCwHQs+tACiSaAG0qO3KZUy6nchX/AB8aBlWkW82uY2uQz7RGCwSASkOJzykkdiRSA0Pqv1vc1taoGl9N236vaTgtICLc2oZdWBklZHcA5wPM+8eTwNiSHfTQ9Urjp6LbdNLag2YuOYmuNo90lXvYJyokH0FZmq9NGblZvLwY+t9FGxzu3l4NbctED6ot2ZGoXUSA/wCE3dPG+1M0EqKt2eVFWcpz292s1TlzOPh+nsY6snzuY4bePb+f5Mg6n/6oQdPrt+qVMTLQl9siY2hv3ljO3kYUM89xWnpfTOfFVs/Bs6D0crOKnaXgH0465fVvSlz0Zqy0/WXTclhYYhuL2qju907Vd0oKueOUn3k85B0k/JrteDNYNucuL5LafDazyo8hI9PiaCRbobbcNhLLI2oT+5PqfjTEFUskUABUCaYA9poAWkVEA7YoAME5FACS3mgAa4ocSULSFJPBBGQaYiIl6SQ6SqM4Wj+VQyP7o4R5OBvVUKALcxcJ6YSSSGGH1Bvnv7oI71W6ot8TW5W6q3LjcVn9CVc1DcnOnrOjPoV4Jble0+15OSck424+PfNUrTYu5uexQtKlqHqM9sYIhUbVE+EIEibPVDyFeC++otgjsdpP8Vcqop5S3OhV1xfEksioukkMndJcLpH4UjA/fvVmCeSUTHS0kIQkJSOAAMAUgFJTRkAqWs0ALEUnyqQHRBJ8qAGwTioDFo4oAMg0AGbQFUxDpqLu8qaEOm7fnyqSI5C/R4HlTwGT4QR6UYA79Hg+VIAD1vwDxSYyNfjbSeKg2SApa5qORjuPH3eVSQiTj2/d5VNCHzdpz+GpIRTKpJnKAFooQD2PTAlI1SRAkmQMVNEQpAx2qQhAHNRJBEAelAAJIGDxUWCIWV3NVMmMx96kMfxByKkgJ2EBgVYhEuwBjsKmiJ//2Q==" alt="Архызпарк" style="width:44px;height:44px;border-radius:50%;margin-bottom:.6rem;">
-        <p style="color:var(--text-muted);">ООО «Архызпарк» · Архыз, Карачаево-Черкесская Республика</p>
+        <p style="color:var(--text-muted);">ООО «Архызпарк» · п. Романтик, аул Архыз, ул. Горная, 1</p>
+        <p style="color:var(--text-muted);margin-top:.5rem;">Пн–чт 9:00–16:00 · Пт–сб 9:00–22:00 (перерыв 16:00–18:00) · Вс 9:00–18:00</p>
       </div>
       <div>
         <h4>Связаться</h4>
-        <a href="tel:#" class="contact-link"><svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Телефон — уточняется</a>
-        <a href="#" class="contact-link"><svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8 12h8M8 8h8M8 16h5"/></svg>MAX — уточняется</a>
+        <a href="tel:+74992131711" class="contact-link"><svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Колл-центр: +7 (499) 213-17-11</a>
+        <a href="tel:+79284210410" class="contact-link"><svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Основная школа: +7 (928) 421-04-10</a>
+        <a href="tel:+79284067001" class="contact-link"><svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Детская школа: +7 (928) 406-70-01</a>
+        <a href="https://wa.me/+79284210410" class="contact-link" target="_blank" rel="noopener"><svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8 12h8M8 8h8M8 16h5"/></svg>WhatsApp / Telegram</a>
+        <a href="mailto:ooo-ap@bk.ru" class="contact-link"><svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>ooo-ap@bk.ru</a>
       </div>
       <div>
         <h4>Разделы</h4>
@@ -1693,7 +1809,7 @@
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 ООО «Архызпарк»</span>
+      <span>© 2026 ООО «Архызпарк» · ИНН 0912004972 · ОГРН 1170917002420</span>
       <span>Черновая версия сайта — не для публикации</span>
     </div>
   </div>
@@ -1794,11 +1910,30 @@
 
   /* ---------- instructor data (пример) ---------- */
   var instructors=[
-    {id:1,name:"Иванов Иван Иванович",cat:"Категория B",kids:false,lang:"RU / EN",dir:["Сноуборд","Лыжи"],tags:["adult","ski","snowboard"],season:"winter",specialties:["Фрирайд"]},
-    {id:2,name:"Петрова Мария Сергеевна",cat:"Категория A",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter",specialties:["Работает с новичками","Семейные группы"]},
-    {id:3,name:"Смирнов Артём Олегович",cat:"Международный уровень",kids:false,lang:"RU / EN",dir:["Походы","Восхождения"],tags:["adult","hiking"],season:"summer",specialties:["Многодневные восхождения"]},
-    {id:4,name:"Ахматова Дана Руслановна",cat:"Категория C",kids:true,lang:"RU",dir:["Сноуборд"],tags:["adult","kids","snowboard"],season:"winter",specialties:["Работает с новичками"]},
-    {id:5,name:"Волков Егор Дмитриевич",cat:"Категория B",kids:false,lang:"RU",dir:["Экскурсии","Заброски"],tags:["adult","hiking"],season:"summer",specialties:["Фотограф маршрута"]}
+    {id:1,name:"Расул Акаев",cat:"НЛИ «B-Basic»",kids:false,lang:"RU",dir:["Лыжи","Сноуборд"],tags:["adult","ski","snowboard"],season:"winter",specialties:["Карвинг","Фристайл","Коррекция техники"]},
+    {id:2,name:"Анастасия Бабак",cat:"УЦ ФГСР «3»",kids:false,lang:"RU",dir:["Лыжи"],tags:["adult","ski"],season:"winter",specialties:[]},
+    {id:3,name:"Умар Байрамуков",cat:"УЦ ФГСР «3»",kids:false,lang:"RU",dir:["Лыжи"],tags:["adult","ski"],season:"winter",specialties:[]},
+    {id:4,name:"Андрей Бокарев",cat:"НЛИ «C»",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter",specialties:["Карвинг","Могул","Внетрассовое катание","Фрирайд"]},
+    {id:5,name:"Сергей Васильев",cat:"ФСТ КЧР «Новичок»",kids:false,lang:"RU",dir:["Лыжи"],tags:["adult","ski"],season:"winter",specialties:[]},
+    {id:6,name:"Сергей Выборов",cat:"ISIA Stamp",kids:true,lang:"RU / EN / FI",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter",specialties:["Могул","Внетрассовое катание","Продвинутый уровень"]},
+    {id:7,name:"Вячеслав Греков",cat:"НЛИ «B»",kids:false,lang:"RU",dir:["Лыжи"],tags:["adult","ski"],season:"winter",specialties:["Карвинг","Методика категорий B и C","Трассы слалома"]},
+    {id:8,name:"Татьяна Грекова",cat:"ФСТ КЧР «Pro»",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter",specialties:["Карвинг","Могул","Семейные группы","Соревнования"]},
+    {id:9,name:"Иван Ерохин",cat:"ФСТ КЧР «Новичок»",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter",specialties:["Работает с детьми","Групповые занятия"]},
+    {id:10,name:"Вадим Каманин",cat:"РНГШ (АСИ) «2» / ФГСР «3»",kids:true,lang:"RU / EN",dir:["Лыжи","Сноуборд"],tags:["adult","kids","ski","snowboard"],season:"winter",specialties:["Карвинг","Спортивные повороты","Фрирайд"]},
+    {id:11,name:"Анна Кириллова",cat:"УЦ ФГСР «3»",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter",specialties:["Только подготовленные трассы"]},
+    {id:12,name:"Илья Кругляк",cat:"НЛИ «C»",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter",specialties:["Работает с новичками","Работает с детьми"]},
+    {id:13,name:"Виктор Новиков",cat:"НЛИ «C»",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter",specialties:["Карвинг","Работает с новичками"]},
+    {id:14,name:"Александр Пахомов",cat:"ВАГИ «1»",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter",specialties:["Карвинг","Спортивные повороты","Могул"]},
+    {id:15,name:"Алексей Протасов",cat:"УЦ ФГСР «3» / НЛИ «C»",kids:true,lang:"RU",dir:["Лыжи","Сноуборд"],tags:["adult","kids","ski","snowboard"],season:"winter",specialties:["Коррекция техники","Работает с детьми"]},
+    {id:16,name:"Роман Раков",cat:"Инструктор по горным лыжам",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter",specialties:["Спортивные повороты","Групповые занятия"]},
+    {id:17,name:"Александр Ривлин",cat:"УЦ ФГСР «Высшая категория»",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter",specialties:["Спортивные повороты","Мастер-классы","Подготовка инструкторов"]},
+    {id:18,name:"Александр Стариков",cat:"УЦ ФГСР «3»",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter",specialties:["Работает с новичками","Работает с детьми"]},
+    {id:19,name:"Даниил Шафеев",cat:"УЦ ФГСР «2»",kids:false,lang:"RU",dir:["Лыжи"],tags:["adult","ski"],season:"winter",specialties:[]},
+    {id:20,name:"Андрей Шкляев",cat:"НЛИ «B»",kids:false,lang:"RU / EN / FI / ES",dir:["Лыжи"],tags:["adult","ski"],season:"winter",specialties:["Карвинг","Продвинутый уровень"]},
+    {id:21,name:"Алексей Шостак",cat:"НЛИ «C»",kids:false,lang:"RU",dir:["Лыжи"],tags:["adult","ski"],season:"winter",specialties:[]},
+    {id:22,name:"Казбек Эдиев",cat:"УЦ ФГСР «3»",kids:true,lang:"RU",dir:["Лыжи"],tags:["adult","kids","ski"],season:"winter",specialties:["Карвинг","Фристайл","Базовая техника"]},
+    {id:23,name:"Смирнов Артём Олегович",cat:"Международный уровень",kids:false,lang:"RU / EN",dir:["Походы","Восхождения"],tags:["adult","hiking"],season:"summer",specialties:["Многодневные восхождения"],demo:true},
+    {id:24,name:"Волков Егор Дмитриевич",cat:"Категория B",kids:false,lang:"RU",dir:["Экскурсии","Заброски"],tags:["adult","hiking"],season:"summer",specialties:["Фотограф маршрута"],demo:true}
   ];
 
   var specIconSvg='<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2l1.8 5.6L19.4 9l-5.6 1.8L12 16l-1.8-5.2L4.6 9l5.6-1.4L12 2z"/></svg>';
@@ -1829,7 +1964,7 @@
         card.className="card";
         card.setAttribute("type","button");
         card.innerHTML =
-          '<div class="card-photo"><span class="example-tag">Пример</span><div class="avatar-fallback">'+initials(i.name)+'</div></div>'+
+          '<div class="card-photo">'+(i.demo ? '<span class="example-tag">Пример</span>' : '')+'<div class="avatar-fallback">'+initials(i.name)+'</div></div>'+
           '<div class="card-body">'+
             '<h3>'+i.name+'</h3>'+
             '<div class="tag-row">'+
@@ -2141,6 +2276,8 @@
   function openSheet(instructor){
     lastFocused=document.activeElement;
     sheetTitle.textContent=instructor.name;
+    var sheetExampleTag=document.getElementById("sheetExampleTag");
+    if(sheetExampleTag){ sheetExampleTag.style.display = instructor.demo ? "" : "none"; }
     sheetTags.innerHTML =
       '<span class="tag cat">'+instructor.cat+'</span>'+
       (instructor.kids ? '<span class="tag kids">Работает с детьми</span>' : '<span class="tag">Не работает с детьми</span>')+
